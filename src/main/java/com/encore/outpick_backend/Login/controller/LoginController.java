@@ -71,7 +71,7 @@ public class LoginController {
 
     @Operation(summary = "token값", description = "token에서 값 얻어오기")
     @GetMapping("/getInfo")
-    public int getInfo (@RequestHeader("Authorization") String token ) {
+    public int getInfo (@RequestHeader("login_token") String token ) {
         return getTokenInfo(token);
     }   // getInfo end
     
