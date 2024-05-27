@@ -13,6 +13,7 @@ public class LoginService {
     @Autowired
     private LoginMapper loginMapper;
 
+    @Autowired
     private PasswordEncoder encoder;
 
     public String login(LoginDTO login_info){
