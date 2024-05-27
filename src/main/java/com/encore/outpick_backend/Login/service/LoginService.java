@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 import com.encore.outpick_backend.Login.domain.LoginDTO;
 import com.encore.outpick_backend.Login.mapper.LoginMapper;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Map;
 import java.util.HashMap;
 
+@Slf4j
 @Service
 public class LoginService {
 
@@ -24,6 +27,8 @@ public class LoginService {
         Map<String,LoginDTO> map = new HashMap<String, LoginDTO>();
 
         LoginDTO user = loginMapper.login(login_info);
+
+        log.info(String.valueOf(user.getEmployee_number()));
 
         if( user != null ){
             
