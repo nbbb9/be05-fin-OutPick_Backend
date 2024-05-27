@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import com.encore.outpick_backend.Login.domain.LoginDTO;
 import com.encore.outpick_backend.Login.mapper.LoginMapper;
 
+import java.util.Map;
+import java.util.HashMap;
+
 @Service
 public class LoginService {
 
@@ -16,7 +19,9 @@ public class LoginService {
     @Autowired
     private PasswordEncoder encoder;
 
-    public String login(LoginDTO login_info){
+    public Map<String, LoginDTO> login(LoginDTO login_info){
+
+        Map<String,LoginDTO> map = new HashMap<String, LoginDTO>();
 
         LoginDTO user = loginMapper.login(login_info);
 
@@ -24,15 +29,17 @@ public class LoginService {
             
             if(encoder.matches(login_info.getPassword(), user.getPassword())){
                 // 로그인 성공
-                return "로그인 성공!";
+                map.put("성공", user);
             }else{
                 // 로그인 실패
-                return "로그인 실패!";
+                map.put("실패", null);
             }
             
         }else{
-            return "해당하는 아이디가 없습니다.";
+            map.put("실패", null);
         }
+
+        return map;
         
     }
 
