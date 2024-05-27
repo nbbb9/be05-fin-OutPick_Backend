@@ -7,6 +7,8 @@ import com.encore.outpick_backend.Login.domain.LoginDTO;
 import com.encore.outpick_backend.Login.service.LoginService;
 
 import io.jsonwebtoken.security.Keys;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
@@ -31,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @RestController
+@Tag(name = "유저", description = "ㅎㅎ")
 @RequestMapping("/user")
 
 public class LoginController {
@@ -41,6 +44,7 @@ public class LoginController {
     // secretKey 생성
     private SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
+    @Operation(summary = "로그인", description = "로그인입니다.")
     @PostMapping("/login")
     public String login (@RequestBody LoginDTO loginInfo ) {
         
@@ -63,12 +67,13 @@ public class LoginController {
         }
 
         return result;
-    }
+    }   // login end
 
+    @Operation(summary = "token값", description = "token에서 값 얻어오기")
     @GetMapping("/getInfo")
     public int getInfo (@RequestHeader("Authorization") String token ) {
         return getTokenInfo(token);
-    }
+    }   // getInfo end
     
 
     public String getToken(int employee_number){
@@ -83,7 +88,7 @@ public class LoginController {
                             .compact();
 
         return token;
-    }
+    }   // getToken end
 
     public int getTokenInfo (String token){
 
@@ -97,7 +102,7 @@ public class LoginController {
         log.info("getInfo : " + num );
 
         return num;
-    }
+    }   // getToken end
     
     
 }
