@@ -18,9 +18,9 @@ public class ShopService {
     private ShopMapper shopMapper;
 
     //로그인한 사원이 관리하는 매장을 리스트로 확인
-    public List<ShopDTO> getShops(LoginDTO login_info){ return shopMapper.showShops(login_info); }
+    public List<ShopDTO> get_shop_list(LoginDTO login_info){ return shopMapper.get_shop_list(login_info); }
     //전체 매장 리스트로 조회
-    public List<ShopDTO> getAllShops(){ return shopMapper.showAllShops(); }
+    public List<ShopDTO> get_all_shop(){ return shopMapper.get_all_shop(); }
     //로그인한 사원이 관리하는 매장 정보를 단일 조회(상세조회)할 수 있다.
-    public ShopDTO getDetail(Map<LoginDTO, ShopDTO> paramMap){ return shopMapper.showShopDetail(paramMap); }
+    public ShopDTO get_shop_detail(Map<LoginDTO, ShopDTO> paramMap){ return shopMapper.get_shop_detail(paramMap); }
 }

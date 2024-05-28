@@ -1,6 +1,8 @@
 package com.encore.outpick_backend.Employee.mapper;
 
 import java.util.List;
+
+import com.encore.outpick_backend.Login.domain.LoginDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,5 +21,7 @@ public interface EmployeeMapper {
     public void update_employee_default(EmployeeDTO employee_info);
     public void update_employee_add(@Param("employee_id") int employee_id, @Param("addShopList") List<Integer> addShopList);
     public void update_employee_delete(@Param("employee_id") int employee_id, @Param("deleteShopList") List<Integer> deleteShopList);
-    
+
+    //로그인한 사원의 정보를 인포윈도우에 출력
+    public List<EmployeeDTO> read_employee_infowindow(LoginDTO loginDTO);
 }

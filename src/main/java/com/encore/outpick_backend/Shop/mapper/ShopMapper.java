@@ -9,9 +9,9 @@ import java.util.Map;
 
 @Mapper
 public interface ShopMapper {
-    List<ShopDTO> showShops(LoginDTO user_info);//로그인한 사원이 관리하는 매장을 리스트로 확인
+    List<ShopDTO> get_shop_list(LoginDTO user_info);//로그인한 사원이 관리하는 매장을 리스트로 확인
 
-    List<ShopDTO> showAllShops();//전체 매장 리스트로 조회
+    List<ShopDTO> get_all_shop();//전체 매장 리스트로 조회
 
-    ShopDTO showShopDetail(Map<LoginDTO, ShopDTO> paramMap);//로그인한 사원이 관리하는 매장 정보를 확인
+    ShopDTO get_shop_detail(Map<LoginDTO, ShopDTO> paramMap);//로그인한 사원이 관리하는 매장 정보를 확인
 }

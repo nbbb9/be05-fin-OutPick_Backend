@@ -61,4 +61,16 @@
         </foreach>
     </update>
 
+    <!-- 로그인한 사원 정보를 인포윈도우에 출력 -->
+    <select id="read_employee_infowindow"
+            parameterType="com.encore.outpick_backend.Login.domain.LoginDTO"
+            resultType="com.encore.outpick_backend.Employee.domain.EmployeeDTO">
+        SELECT
+            *
+        FROM
+            employee
+        WHERE
+            employee_number = #{employee_number}
+    </select>
+
 </mapper>

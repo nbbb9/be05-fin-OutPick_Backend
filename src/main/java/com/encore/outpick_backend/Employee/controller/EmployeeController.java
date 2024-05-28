@@ -83,7 +83,14 @@ public class EmployeeController {
         }
     }
 
+    @GetMapping("/mypage")
+    @Operation(summary = "사원 정보를 인포윈도우에서 확인", description = "로그인한 사원의 정보를 가져오는 api")
+    public ResponseEntity<List<EmployeeDTO>> read_employee_infowindow(@RequestHeader("login_token") String token){
+        log.info("debug : 로그인한 사원의 정보를 인포윈도우에 출력" , "token : " , token);
 
-public class EmployeeController {
+        LoginDTO user = lc.getTokenInfo(token);
+
+        return new ResponseEntity<List<EmployeeDTO>>(employeeService.read_employee_infowindow(user), HttpStatus.OK);
+    }//read_employee_infowindow end
 
 }
