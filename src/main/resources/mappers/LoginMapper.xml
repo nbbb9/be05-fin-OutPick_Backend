@@ -3,7 +3,7 @@
 
 <mapper namespace="com.encore.outpick_backend.Login.mapper.LoginMapper">
 
-    <select id="login"
+    <select id="login_employee"
         parameterType="com.encore.outpick_backend.Login.domain.LoginDTO"
         resultType="com.encore.outpick_backend.Login.domain.LoginDTO">
 
@@ -11,6 +11,19 @@
             employee_number, password
         FROM 
             employee
+        WHERE 
+            employee_number = #{employee_number}
+
+    </select>
+
+    <select id="login_admin"
+        parameterType="com.encore.outpick_backend.Login.domain.LoginDTO"
+        resultType="com.encore.outpick_backend.Login.domain.LoginDTO">
+
+        SELECT 
+            employee_number, password
+        FROM 
+            admin
         WHERE 
             employee_number = #{employee_number}
 

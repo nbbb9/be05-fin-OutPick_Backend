@@ -26,9 +26,13 @@ public class LoginService {
 
         Map<String,LoginDTO> map = new HashMap<String, LoginDTO>();
 
-        LoginDTO user = loginMapper.login(login_info);
+        LoginDTO user;
 
-        log.info(String.valueOf(user.getEmployee_number()));
+        if(login_info.getRole().equals("사원")){
+            user = loginMapper.login_employee(login_info);
+        }else{
+            user = loginMapper.login_admin(login_info);
+        }
 
         if( user != null ){
             
