@@ -11,5 +11,4 @@ public class OutpickBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OutpickBackendApplication.class, args);
 	}
-
 }

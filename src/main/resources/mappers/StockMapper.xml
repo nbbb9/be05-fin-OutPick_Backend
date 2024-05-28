@@ -2,5 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.encore.outpick_backend.Stock.mapper.StockMapper">
-
+    <select id="read_stock"
+            resultType="com.encore.outpick_backend.Stock.domain.StockDTO">
+        SELECT *
+        FROM
+            stock
+    </select>
 </mapper>
