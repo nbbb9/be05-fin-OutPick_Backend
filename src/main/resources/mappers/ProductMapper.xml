@@ -22,4 +22,17 @@
             product_id = #{product_id}
             
     </select>
+
+    <!-- 상품 할인율 수정 -->
+    <select id="update_product_discount"
+            parameterType="map">
+        UPDATE
+            product p
+        JOIN
+            shop_stock s on (p.product_id = s.product_id)
+        SET
+            s.discount = #{discount}
+        WHERE
+            p.product_id = #{product_id}
+    </select>
 </mapper>

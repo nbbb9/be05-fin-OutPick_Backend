@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.encore.outpick_backend.Product.domain.ProductDTO;
 import com.encore.outpick_backend.Product.mapper.ProductMapper;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 @Service
 public class ProductService {
     
@@ -25,5 +27,10 @@ public class ProductService {
     public List<ProductDTO> read_product(Integer product_id) {
         System.out.println(">>> debug Product Service read_product");
         return productMapper.read_product(product_id);
+    }
+
+    public void update_product_discount(Integer product_id, Integer discount) {
+        productMapper.update_product_discount(product_id, discount);
+        System.out.println(">>> debug Product Service update_product_rate");
     }
 }

@@ -15,6 +15,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 @RestController
@@ -41,5 +45,11 @@ public class ProductController {
         return new ResponseEntity<List<ProductDTO>>(result,HttpStatus.OK);
     }
     
-    
+    // 상품 할인율 수정
+    @PutMapping("/discount")
+    @Operation(summary = "상품 할인율 수정" , description = "상품의 할인율을 수정하는 api")
+    public void update_product_discount(@RequestBody ProductDTO product, Integer discount) {
+        System.out.println(">>>> debug ProductController PUT: /discount");
+        productService.update_product_discount(product.getProduct_id(), discount);
+    }
 }
