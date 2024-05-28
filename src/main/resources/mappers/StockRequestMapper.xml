@@ -3,4 +3,57 @@
 
 <mapper namespace="com.encore.outpick_backend.StockRequest.mapper.StockRequestMapper">
 
+    <!-- 재고요청서 전체 조회 -->
+    <select id="read_sr_list"
+            parameterType="com.encore.outpick_backend.StockRequest.domain.StockRequestDTO"
+            resultType="com.encore.outpick_backend.StockRequest.domain.StockRequestDTO">
+
+        SELECT
+            stock_request_id,
+            s.name as shop_name,
+            request_date,
+            admin_approval
+        FROM
+            stock_request sr
+        JOIN
+            shop s ON sr.shop_id = s.shop_id
+
+    </select>
+
+
+    <!-- 재고요청서 단일 조회 -->
+    <select id="read_sr_detail"
+            parameterType="int"
+            resultType="com.encore.outpick_backend.StockRequest.domain.StockRequestDTO">
+
+        SELECT
+           s.name as shop_name,
+           request_date,
+           e.name as employee_name,
+           admin_approval,
+           sr.product_id,
+           p.name as product_name,
+           amount
+        FROM
+            stock_request sr
+        JOIN
+            product p ON sr.product_id = p.product_id
+        JOIN
+            shop s ON sr.shop_id = s.shop_id
+        JOIN
+            employee e ON s.employee_id = e.employee_id
+        WHERE
+            sr.stock_request_id = #{id}
+    </select>
+
+
+    <!-- 재고요청서 승인 -->
+    <select id="update_sr"
+            parameterType="int"
+            resultType="com.encore.outpick_backend.StockRequest.domain.StockRequestDTO">
+        UPDATE stock_request
+        SET admin_approval = '승인'
+        WHERE stock_request_id = #{id}
+    </select>
+
 </mapper>
