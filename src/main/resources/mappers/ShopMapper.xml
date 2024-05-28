@@ -3,4 +3,46 @@
 
 <mapper namespace="com.encore.outpick_backend.Shop.mapper.ShopMapper">
 
+    <!--로그인한 사원이 관리하는 매장을 리스트로 확인-->
+    <select id="showShops"
+            parameterType="com.encore.outpick_backend.Login.domain.LoginDTO"
+            resultType="com.encore.outpick_backend.Shop.domain.ShopDTO">
+
+            SELECT
+                *
+            FROM
+                shop
+            WHERE
+                employee_id = (SELECT employee_id
+                               FROM employee
+                               WHERE employee_number = #{employee_number})
+    </select>
+
+    <!--전체 매장 리스트로 조회-->
+    <select id="showAllShops"
+            resultType="com.encore.outpick_backend.Shop.domain.ShopDTO">
+
+        SELECT
+            *
+        FROM
+            shop
+    </select>
+
+    <!--로그인한 사원이 관리하는 매장 정보를 확인-->
+    <select id="showShopDetail"
+            parameterType="map"
+            resultType="com.encore.outpick_backend.Shop.domain.ShopDTO">
+
+            SELECT
+                *
+            FROM
+                shop
+            WHERE
+                employee_id = (SELECT employee_id
+                               FROM employee
+                               WHERE employee_number = #{employee_number})
+            AND
+                shop_id = #{shop_id}
+    </select>
+
 </mapper>
