@@ -3,4 +3,38 @@
 
 <mapper namespace="com.encore.outpick_backend.Proposal.mapper.ProposalMapper">
 
+    <select id="get_proposal"
+            parameterType="int"
+            resultType="com.encore.outpick_backend.Proposal.domain.ProposalDTO">
+        SELECT p.*
+        FROM proposal p
+                 JOIN shop s ON p.shop_id = s.shop_id
+                 JOIN employee e ON s.employee_id = e.employee_id
+        WHERE e.employee_number = #{employee_number};
+    </select>
+
+    <select id="read_proposal"
+            parameterType="map"
+            resultType="com.encore.outpick_backend.Proposal.domain.ProposalDTO">
+        SELECT p.*
+        FROM proposal p
+                 JOIN shop s ON p.shop_id = s.shop_id
+                 JOIN employee e ON s.employee_id = e.employee_id
+        WHERE p.proposal_id = #{proposal_id}
+          AND e.employee_number = #{employee_number};
+    </select>
+
+    <update id="put_proposal_solution"
+            parameterType="com.encore.outpick_backend.Proposal.domain.ProposalDTO">
+        UPDATE proposal
+        SET solution = #{solution}
+        WHERE proposal_id = #{proposal_id};
+    </update>
+
+    <update id="put_proposal_completed"
+            parameterType="com.encore.outpick_backend.Proposal.domain.ProposalDTO">
+        UPDATE proposal
+        SET completed = 'y'
+        WHERE proposal_id = #{proposal_id};
+    </update>
 </mapper>
