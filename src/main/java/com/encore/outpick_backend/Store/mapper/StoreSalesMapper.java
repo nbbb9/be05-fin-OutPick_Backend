@@ -10,7 +10,7 @@ import java.util.List;
 public interface StoreSalesMapper {
 
     //판매 내역 리스트
-    public List<StoreSalesDTO> read_sales_list(StoreSalesDTO storeSalesDTO);
+    public List<StoreSalesDTO> read_sales_list(int shopid);
 
     //판매 내역 추가
     public void create_sales(StoreAddSalesDTO storeAddSalesDTO);

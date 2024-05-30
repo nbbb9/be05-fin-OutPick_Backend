@@ -4,15 +4,15 @@
 
     <!--재고 리스트-->
     <select id="read_stock_list"
-            parameterType="com.encore.outpick_backend.Store.domain.StoreLoginDTO"
-            resultType="com.encore.outpick_backend.Store.domain.StoreLoginDTO">
+            parameterType="int"
+            resultType="com.encore.outpick_backend.Store.domain.StoreStockDTO">
 
         SELECT
             *
         FROM
-            stock
+            shop_stock
         WHERE
-            shop_id = #{shop_id}
+            shop_id = #{shopid}
 
     </select>
 

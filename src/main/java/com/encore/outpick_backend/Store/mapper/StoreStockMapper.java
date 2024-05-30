@@ -9,6 +9,6 @@ import java.util.List;
 public interface StoreStockMapper {
 
     //재고 리스트
-    public List<StoreStockDTO> read_stock_list(StoreStockDTO storeStockDTO);
+    public List<StoreStockDTO> read_stock_list(int shopid);
 
 }
