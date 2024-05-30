@@ -25,7 +25,8 @@
             p.first_cost,
             ss.stock,
             ss.stock_date,
-            ss.discount
+            ss.discount,
+            p.product_id
         FROM
             shop_stock ss
                 JOIN product p ON p.product_id = ss.product_id
