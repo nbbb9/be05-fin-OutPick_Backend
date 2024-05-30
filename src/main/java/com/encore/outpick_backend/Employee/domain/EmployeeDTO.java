@@ -3,6 +3,8 @@ package com.encore.outpick_backend.Employee.domain;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -16,6 +18,7 @@ public class EmployeeDTO {
     private String birthdate;
     private String state;
     private LocalDate hired_date;
+    @JsonIgnore
     private String password;
 
     private List<Integer> add_shop;

@@ -68,7 +68,14 @@
         SELECT
             *
         FROM
+
+        <if test="role == '사원'">
             employee
+        </if>
+        <if test="role == '관리자'">
+            admin
+        </if>
+            
         WHERE
             employee_number = #{employee_number}
     </select>
