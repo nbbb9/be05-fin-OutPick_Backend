@@ -47,6 +47,7 @@
             resultType="com.encore.outpick_backend.StockRequest.domain.StockRequestDTO">
 
         SELECT
+           sr.stock_request_id,
            s.name as shop_name,
            request_date,
            e.name as employee_name,
@@ -72,13 +73,14 @@
             resultType="com.encore.outpick_backend.StockRequest.domain.StockRequestDTO">
 
         SELECT
-           s.name as shop_name,
-           request_date,
-           e.name as employee_name,
-           admin_approval,
-           sr.product_id,
-           p.name as product_name,
-           amount
+            sr.stock_request_id,
+            s.name as shop_name,
+            request_date,
+            e.name as employee_name,
+            admin_approval,
+            sr.product_id,
+            p.name as product_name,
+            amount
         FROM
             stock_request sr
         JOIN
