@@ -11,7 +11,7 @@ public class ShopDTO {
     private String contact;//연락처
     private String content;//설명
     private String manager;//운영자
-    private String scale;//규모
     private String email;//이메일
+    private String name;//매장명
 
 }

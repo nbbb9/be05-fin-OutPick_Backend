@@ -3,4 +3,74 @@
 
 <mapper namespace="com.encore.outpick_backend.Employee.mapper.EmployeeMapper">
 
+    <!-- 사원 리스트 조회 -->
+    <select id="read_employee_list"
+        resultType="com.encore.outpick_backend.Employee.domain.EmployeeDTO">
+
+        SELECT *
+        FROM employee
+
+    </select>
+
+    <!-- 특정 사원의 상세 정보 조회 -->
+    <select id="read_employee"
+        parameterType="java.lang.Integer"
+        resultType="com.encore.outpick_backend.Employee.domain.EmployeeDTO">
+
+        SELECT *
+        FROM employee
+        WHERE employee_id = #{employee_id}
+
+    </select>
+
+    <!-- 사원의 기본 정보 수정 -->
+    <update id="update_employee_default"
+        parameterType="com.encore.outpick_backend.Employee.domain.EmployeeDTO">
+
+        UPDATE employee
+        SET 
+            position = #{position},
+            contact = #{contact},
+            address = #{address}
+        WHERE employee_id = #{employee_id}
+
+    </update>
+
+    <!-- 사원의 추가된 담당 매장 -->
+    <update id="update_employee_add">
+
+        UPDATE shop
+        SET employee_id = #{employee_id}
+        WHERE shop_id IN
+            <foreach item="add_shop" collection="addShopList"
+                open="(" separator="," close=")">
+                #{add_shop}
+            </foreach>
+
+    </update>
+
+    <!-- 사원의 삭제된 담당 매장 -->
+    <update id="update_employee_delete">
+
+        UPDATE shop
+        SET employee_id = null
+        WHERE shop_id IN
+        <foreach item="delete_shop" collection="deleteShopList"
+            open="(" separator="," close=")">
+            #{delete_shop}
+        </foreach>
+    </update>
+
+    <!-- 로그인한 사원 정보를 인포윈도우에 출력 -->
+    <select id="read_employee_infowindow"
+            parameterType="com.encore.outpick_backend.Login.domain.LoginDTO"
+            resultType="com.encore.outpick_backend.Employee.domain.EmployeeDTO">
+        SELECT
+            *
+        FROM
+            employee
+        WHERE
+            employee_number = #{employee_number}
+    </select>
+
 </mapper>
