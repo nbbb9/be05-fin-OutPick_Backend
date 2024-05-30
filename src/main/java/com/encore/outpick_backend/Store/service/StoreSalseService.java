@@ -17,11 +17,11 @@ public class StoreSalseService {
     private StoreSalesMapper storeSalesMapper;
 
     //판매 내역 리스트
-    public List<StoreSalesDTO> read_sales_list(StoreSalesDTO storeSalesDTO){
+    public List<StoreSalesDTO> read_sales_list(int shopid){
 
         log.info("판매 내역 리스트 Service");
 
-        return storeSalesMapper.read_sales_list(storeSalesDTO);
+        return storeSalesMapper.read_sales_list(shopid);
     }//read_sales_list end
 
     //판매 내역 추가

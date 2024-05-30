@@ -8,10 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,11 +22,11 @@ public class StoreStockController {
     private StoreStockService storeStockService;
 
     @Operation(summary = "재고 리스트")
-    @GetMapping("/stock/list")
-    public ResponseEntity<List<StoreStockDTO>> read_stock_list(@RequestBody StoreStockDTO storeStockDTO){
-        log.info("재고 리스트 Controller. 매장 ID : " , storeStockDTO.getShop_id());
+    @GetMapping("/stock/list/{shopid}")
+    public ResponseEntity<List<StoreStockDTO>> read_stock_list(@PathVariable("shopid") int shopid){
+        log.info("재고 리스트 Controller. 매장 ID : " , shopid);
 
-        return new ResponseEntity<>(storeStockService.read_stock_list(storeStockDTO), HttpStatus.OK);
+        return new ResponseEntity<>(storeStockService.read_stock_list(shopid), HttpStatus.OK);
     }//read_stock_list end
 
 }
