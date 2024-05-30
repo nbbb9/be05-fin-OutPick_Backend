@@ -6,7 +6,16 @@
     <select id="get_proposal"
             parameterType="int"
             resultType="com.encore.outpick_backend.Proposal.domain.ProposalDTO">
-        SELECT p.*
+        SELECT p.proposal_id,
+               p.shop_id,
+               s.name as shop_name,
+               p.title,
+               p.content,
+               p.date,
+               p.category,
+               p.completed,
+               p.solution,
+               e.name as employee_name
         FROM proposal p
                  JOIN shop s ON p.shop_id = s.shop_id
                  JOIN employee e ON s.employee_id = e.employee_id
@@ -16,7 +25,16 @@
     <select id="read_proposal"
             parameterType="map"
             resultType="com.encore.outpick_backend.Proposal.domain.ProposalDTO">
-        SELECT p.*
+        SELECT p.proposal_id,
+               p.shop_id,
+               s.name as shop_name,
+               p.title,
+               p.content,
+               p.date,
+               p.category,
+               p.completed,
+               p.solution,
+               e.name as employee_name
         FROM proposal p
                  JOIN shop s ON p.shop_id = s.shop_id
                  JOIN employee e ON s.employee_id = e.employee_id

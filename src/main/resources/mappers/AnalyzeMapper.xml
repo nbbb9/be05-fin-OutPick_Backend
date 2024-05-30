@@ -5,7 +5,8 @@
 
     <select id="get_analyze_entire"
                 resultType="com.encore.outpick_backend.Analyze.domain.AnalyzeEntireVO">
-        SELECT MONTH(ss.date), SUM(ss.quantity)
+        SELECT MONTH(ss.date) as month,
+            SUM(ss.quantity) as entireQuantity
         FROM shop_sales ss
             JOIN shop_stock st ON ss.shop_stock_id=st.shop_stock_id
             JOIN shop s ON s.shop_id=ss.shop_id
