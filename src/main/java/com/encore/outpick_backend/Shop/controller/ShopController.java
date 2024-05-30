@@ -48,19 +48,13 @@ public class ShopController {
 
     @Operation(summary = "로그인한 사원이 담당한 매장의 상세정보 확인", description = "매장 상세정보 확인")
     @GetMapping("/detail/{shopid}")
-    public ResponseEntity<ShopDTO> get_shop_detail(@RequestHeader("login_token") String token, @PathVariable("shopId") int shopId){
+    public ResponseEntity<ShopDTO> get_shop_detail(@RequestHeader("login_token") String token, @PathVariable("shopid") int shopId){
 
         log.info("debug : 로그인한 사원이 담당한 매장 상세정보 " , "token : " , token , " shopId : ", shopId);
 
         LoginDTO user = lc.getTokenInfo(token);
 
-        ShopDTO shopDTO = new ShopDTO();
-        shopDTO.setShop_id(shopId);
-
-        Map<LoginDTO, ShopDTO> paramMap = new HashMap<>();
-        paramMap.put(user, shopDTO);
-
-        return new ResponseEntity<ShopDTO>(shopService.get_shop_detail(paramMap), HttpStatus.OK);
+        return new ResponseEntity<ShopDTO>(shopService.get_shop_detail(user.getEmployee_number(),shopId ), HttpStatus.OK);
     }//getShopDetail end
 
 }
