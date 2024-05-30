@@ -1,4 +1,4 @@
-// package com.encore.outpick_backend.Proposal.controller;
+package com.encore.outpick_backend.Proposal.controller;
 
 import com.encore.outpick_backend.Login.domain.LoginDTO;
 import com.encore.outpick_backend.Login.controller.LoginController;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-// import java.util.List;
+import java.util.List;
 
 @Tag(name = "건의문", description = "건의문과 관련된 api 목록")
 @Slf4j
@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/proposal")
 public class ProposalController {
 
-//     @Autowired
-//     private ProposalService proposalService;
+     @Autowired
+     private ProposalService proposalService;
 
     @Autowired
     private LoginController loginController;
