@@ -93,24 +93,24 @@
 
 
     <!-- 관리자 : 재고요청서 승인 -->
-    <select id="update_sr"
-            parameterType="int"
-            resultType="com.encore.outpick_backend.StockRequest.domain.StockRequestDTO">
+    <update id="update_sr"
+            parameterType="int">
+
         UPDATE stock_request
         SET admin_approval = '승인'
         WHERE stock_request_id = #{id}
-    </select>
+    </update>
 
     <!-- 사원 : 재고요청서 승인 -->
-    <select id="update_sr_emp"
-            parameterType="int"
-            resultType="com.encore.outpick_backend.StockRequest.domain.StockRequestDTO">
+    <update id="update_sr_emp"
+            parameterType="int">
+
         UPDATE stock_request sr
             JOIN shop s ON sr.shop_id = s.shop_id
             JOIN employee e ON s.employee_id = e.employee_id
         SET approval='승인'
         WHERE stock_request_id = #{id} and e.employee_number = #{employee_number}
 
-    </select>
+    </update>
 
 </mapper>

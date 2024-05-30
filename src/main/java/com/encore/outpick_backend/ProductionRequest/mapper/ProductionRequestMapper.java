@@ -1,5 +1,23 @@
 package com.encore.outpick_backend.ProductionRequest.mapper;
 
-public class ProductionRequestMapper {
-    
+import com.encore.outpick_backend.ProductionRequest.domain.ProductionRequestDTO;
+import com.encore.outpick_backend.ProductionRequest.domain.ProductionUpdateDTO;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.http.ResponseEntity;
+import java.util.List;
+
+@Mapper
+public interface ProductionRequestMapper {
+    public List<ProductionRequestDTO> read_pr_list();
+    public List<ProductionRequestDTO> read_pr_empList(int employee_number);
+
+    public ProductionRequestDTO read_pr_detail(int id);
+
+    public ProductionRequestDTO read_pr_empDetail(int employee_number, int id);
+
+    public void confirm_pr(int id);
+
+    public void update_pr(ProductionUpdateDTO productionUpdateDTO);
+
+    public void delete_pr(int employee_number, int id);
 }

@@ -1,6 +1,7 @@
 package com.encore.outpick_backend.StockRequest.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import lombok.Data;
 
 @Data
@@ -12,7 +13,7 @@ public class StockRequestDTO {
     private int admin_id;
     private int product_id;
     private int amount; // 주문 수량
-    private LocalDate request_date;
+    private LocalDateTime request_date;
     private Approval approval;
     private AdminApproval admin_approval;
 

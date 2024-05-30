@@ -1,10 +1,11 @@
 package com.encore.outpick_backend.StockRequest.mapper;
 
-import com.encore.outpick_backend.Login.domain.LoginDTO;
 import com.encore.outpick_backend.StockRequest.domain.StockRequestDTO;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface StockRequestMapper {
     public List<StockRequestDTO> read_sr_list();
     public List<StockRequestDTO> read_sr_empList(int employee_number);
