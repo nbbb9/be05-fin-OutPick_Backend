@@ -43,6 +43,7 @@
         <!-- 피그마에 필요한 데이터 : 날짜, 작성한 사원 이름, 관리자의 결제 상태, 상품 ID,
           상품명, 주문수량, 원가-->
         SELECT
+            pr.production_request_id,
             request_date,
             e.name AS employee_name,
             approval,
@@ -68,6 +69,7 @@
         <!-- 피그마에 필요한 데이터 : 날짜, 작성한 사원 이름, 관리자의 결제 상태, 상품 ID,
           상품명, 주문수량, 원가-->
         SELECT
+            pr.production_request_id,
             request_date,
             e.name AS employee_name,
             approval,
