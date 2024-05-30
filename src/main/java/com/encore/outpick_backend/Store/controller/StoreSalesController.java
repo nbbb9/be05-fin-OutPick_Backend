@@ -23,11 +23,11 @@ public class StoreSalesController {
     private StoreSalseService storeSalseService;
 
     @Operation(summary = "판매 내역 리스트")
-    @GetMapping("/list")
-    public ResponseEntity<List<StoreSalesDTO>> read_sales_list(@RequestBody StoreSalesDTO storeSalesDTO){
-        log.info("판매 내역 리스트 Controller. 매장 ID : " , storeSalesDTO.getShop_id());
+    @GetMapping("/list/{shopid}")
+    public ResponseEntity<List<StoreSalesDTO>> read_sales_list(@PathVariable("shopid") int shopid){
+        log.info("판매 내역 리스트 Controller. 매장 ID : " , shopid);
 
-        return new ResponseEntity<>(storeSalseService.read_sales_list(storeSalesDTO), HttpStatus.OK);
+        return new ResponseEntity<>(storeSalseService.read_sales_list(shopid), HttpStatus.OK);
     }//read_sales_list end
 
     @Operation(summary = "판매 내역 추가")

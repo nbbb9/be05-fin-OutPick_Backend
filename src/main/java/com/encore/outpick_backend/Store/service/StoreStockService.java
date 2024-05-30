@@ -15,11 +15,11 @@ public class StoreStockService {
     private StoreStockMapper storeStockMapper;
 
     //재고 리스트
-    public List<StoreStockDTO> read_stock_list(StoreStockDTO storeStockDTO){
+    public List<StoreStockDTO> read_stock_list(int shopid){
 
         log.info("재고 리스트 Service");
 
-        return storeStockMapper.read_stock_list(storeStockDTO);
+        return storeStockMapper.read_stock_list(shopid);
     }//read_stock_list end
 
 }

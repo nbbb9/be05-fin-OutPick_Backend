@@ -34,7 +34,7 @@
             request_date,
             e.name AS employee_name,
             approval,
-            product_id,
+            sr.product_id,
             p.name AS product_name,
             amount
         FROM
@@ -44,7 +44,7 @@
         JOIN
             shop s On sr.shop_id=s.shop_id
         JOIN
-            employee e ON sr.employee_id=e.employee_id
+            employee e ON s.employee_id=e.employee_id
         WHERE
             sr.shop_id=#{shopid}
 
@@ -66,11 +66,11 @@
         JOIN
             stock_request sr ON f.stock_request_id=sr.stock_request_id
         JOIN
-            shop s ON sr.shop_id=s.shop_is
+            shop s ON sr.shop_id=s.shop_id
         JOIN
             employee e ON s.employee_id=e.employee_id
         WHERE
-            sr.stock_request_id=#{formid}
+            f.stock_request_id=#{formid}
 
     </select>
 
