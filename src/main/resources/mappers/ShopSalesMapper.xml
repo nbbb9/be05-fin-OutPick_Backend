@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.encore.outpick_backend.Analyze.mapper.ShopSalesMapper">
+
+    <select id="read_list"
+            parameterType="int"
+            resultType="com.encore.outpick_backend.Analyze.domain.ShopSalesDTO">
+        SELECT shop_id,
+               (SELECT name FROM shop s WHERE ss.shop_id=s.shop_id) AS shop_name,
+               sum(quantity) AS quantity
+        FROM shop_sales ss
+        WHERE YEAR(date)=#{year} AND MONTH(date)=#{month}
+        GROUP BY shop_id
+
+    </select>
+</mapper>
