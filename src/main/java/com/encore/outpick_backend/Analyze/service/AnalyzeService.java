@@ -12,7 +12,8 @@ public class AnalyzeService {
     @Autowired
     private AnalyzeMapper analyzeMapper;
 
-    public List<AnalyzeEntireVO> get_analyze_entire(){
-        return analyzeMapper.get_analyze_entire();
+    public List<AnalyzeEntireVO> get_analyze_entire(int year){
+
+        return analyzeMapper.get_analyze_entire(year);
     }
 }

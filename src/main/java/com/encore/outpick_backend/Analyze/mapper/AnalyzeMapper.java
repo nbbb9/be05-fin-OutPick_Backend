@@ -7,5 +7,5 @@ import java.util.List;
 
 @Mapper
 public interface AnalyzeMapper {
-    List<AnalyzeEntireVO> get_analyze_entire();
+    List<AnalyzeEntireVO> get_analyze_entire(int year);
 }
