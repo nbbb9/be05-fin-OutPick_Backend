@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-//@Service
-//public class ProposalService {
-//
+@Service
+public class ProposalService {
+
 //    @Autowired
 //    private ProposalMapper proposalMapper;
 //
@@ -24,4 +24,4 @@ import java.util.List;
 //    public void updateSolution(ProposalDTO proposalDTO){
 //        proposalMapper.updateSolution(proposalDTO);
 //    }
-//}
+}

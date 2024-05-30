@@ -1,0 +1,21 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.encore.outpick_backend.Store.mapper.StoreLoginMapper">
+
+    <!--매장 로그인-->
+    <select id="login_store"
+            parameterType="com.encore.outpick_backend.Store.domain.StoreLoginDTO"
+            resultType="com.encore.outpick_backend.Store.domain.StoreLoginDTO">
+
+        SELECT
+            name, manager, email
+        FROM
+            shop
+        WHERE
+            name = #{name}
+            AND manager = #{manager}
+            AND email = #{email}
+
+    </select>
+
+</mapper>

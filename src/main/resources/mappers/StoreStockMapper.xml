@@ -1,0 +1,19 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.encore.outpick_backend.Store.mapper.StoreStockMapper">
+
+    <!--재고 리스트-->
+    <select id="read_stock_list"
+            parameterType="com.encore.outpick_backend.Store.domain.StoreLoginDTO"
+            resultType="com.encore.outpick_backend.Store.domain.StoreLoginDTO">
+
+        SELECT
+            *
+        FROM
+            stock
+        WHERE
+            shop_id = #{shop_id}
+
+    </select>
+
+</mapper>
