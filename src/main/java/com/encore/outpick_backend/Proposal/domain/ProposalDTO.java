@@ -1,19 +1,19 @@
 package com.encore.outpick_backend.Proposal.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
-@Setter
-@Getter
+@Data
 public class ProposalDTO {
     private int proposal_id;
     private int shop_id;
+    private String shop_name;
     private String title;
     private String content;
-    private Date date;
-    private PropsalCategory category;
+    private LocalDateTime date;
+    private ProposalCategory category;
     private String completed;
     private String solution;
+    private String employee_name;
 }
