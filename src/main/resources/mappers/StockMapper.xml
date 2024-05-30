@@ -8,4 +8,32 @@
         FROM
             stock
     </select>
+
+    <select id="read_stock_shop"
+            parameterType="map"
+            resultType="com.encore.outpick_backend.Stock.domain.ShopStockDTO">
+        SELECT
+            ss.shop_stock_id,
+            s.shop_id,
+            s.name AS shop_name,
+            p.name AS product_name,
+            p.gender,
+            c.name AS category_name,
+            p.color,
+            p.season,
+            p.fit,
+            p.first_cost,
+            ss.stock,
+            ss.stock_date,
+            ss.discount
+        FROM
+            shop_stock ss
+                JOIN product p ON p.product_id = ss.product_id
+                JOIN category c ON c.category_id = p.category_id
+                JOIN shop s ON s.shop_id = ss.shop_id
+                JOIN employee e ON e.employee_id = s.employee_id
+        WHERE
+            e.employee_number = #{employee_number}
+          AND s.shop_id = #{shop_id};
+    </select>
 </mapper>

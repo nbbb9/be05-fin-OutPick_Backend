@@ -8,11 +8,11 @@
         resultType="com.encore.outpick_backend.Login.domain.LoginDTO">
 
         SELECT 
-            employeeNumber, password
+            employee_number, password
         FROM 
             employee
         WHERE 
-            employeeNumber = #{employee_number}
+            employee_number = #{employee_number}
 
     </select>
 
