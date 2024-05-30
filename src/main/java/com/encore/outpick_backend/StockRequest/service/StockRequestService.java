@@ -1,5 +1,52 @@
 package com.encore.outpick_backend.StockRequest.service;
 
+
+import com.encore.outpick_backend.StockRequest.domain.StockRequestDTO;
+import com.encore.outpick_backend.StockRequest.mapper.StockRequestMapper;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
 public class StockRequestService {
-    
+
+    private final StockRequestMapper stockRequestMapper;
+
+    // 모든 재고요청서 리스트 조회
+    // 사원
+    public List<StockRequestDTO> read_sr_empList(int employee_number){
+        return stockRequestMapper.read_sr_empList(employee_number);
+    }
+
+    // 관리자
+    public List<StockRequestDTO> read_sr_list(){
+        return stockRequestMapper.read_sr_list();
+    }
+
+
+    // 재고요성처 단일 조회(상세조회)
+    // 관리자
+    public StockRequestDTO read_sr_detail(int id){
+        return stockRequestMapper.read_sr_detail(id);
+    }
+
+    // 사원
+    public StockRequestDTO read_sr_empDetail(int employee_number, int id){
+        return stockRequestMapper.read_sr_empDetail(employee_number, id);
+    }
+
+    // 관리자 :  재고요청서를 승인
+    public void update_sr(int id){
+        stockRequestMapper.update_sr(id);
+    }
+    // 사원 : 재고요청서를 승인
+    public void update_sr_emp(int employee_number, int id){
+        stockRequestMapper.update_sr_emp(employee_number, id);
+    }
+
+
 }

@@ -1,0 +1,77 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.encore.outpick_backend.Store.mapper.StoreStockRequestMapper">
+
+    <!--재고요청서 작성-->
+    <insert id="create_stockRequest"
+            parameterType="com.encore.outpick_backend.Store.domain.StoreAddStockRequestDTO">
+
+        INSERT INTO stock_request(shop_id, product_id, amount, request_date, approval, admin_approval)
+        VALUES
+            (#{shop_id}, #{product_id}, #{amount}, SYSDATE(), "대기", "대기")
+
+    </insert>
+
+    <!--재고요청서 작성 페이지 이동 시 상품 정보 불러옴-->
+    <select id="read_stockRequest_product"
+            resultType="com.encore.outpick_backend.Product.domain.ProductDTO">
+
+        SELECT
+            *
+        FROM
+            product
+
+    </select>
+
+    <!--재고 요청서 리스트-->
+    <select id="read_stockRequest_list"
+            parameterType="int"
+            resultType="com.encore.outpick_backend.Store.domain.StoreStockRequestDTO">
+
+        SELECT
+            stock_request_id,
+            s.name AS shop_name,
+            request_date,
+            e.name AS employee_name,
+            approval,
+            product_id,
+            p.name AS product_name,
+            amount
+        FROM
+            stock_request sr
+        JOIN
+            product p ON sr.product_id=p.product_id
+        JOIN
+            shop s On sr.shop_id=s.shop_id
+        JOIN
+            employee e ON sr.employee_id=e.employee_id
+        WHERE
+            sr.shop_id=#{shopid}
+
+    </select>
+
+    <!--피드백 상세-->
+    <select id="read_feedback"
+            parameterType="int"
+            resultType="com.encore.outpick_backend.Store.domain.StoreFeedbackDTO">
+
+        SELECT
+            e.name AS employee_name,
+            f.feedback_content,
+            f.month,
+            f.first_classification,
+            f.second_classification
+        FROM
+            feedback f
+        JOIN
+            stock_request sr ON f.stock_request_id=sr.stock_request_id
+        JOIN
+            shop s ON sr.shop_id=s.shop_is
+        JOIN
+            employee e ON s.employee_id=e.employee_id
+        WHERE
+            sr.stock_request_id=#{formid}
+
+    </select>
+
+</mapper>
