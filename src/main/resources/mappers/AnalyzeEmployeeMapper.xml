@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.encore.outpick_backend.Analyze.mapper.AnalyzeEmployeeMapper">
+    <select id="read_employee_analyze"
+            parameterType="com.encore.outpick_backend.Analyze.domain.AERequestDTO"
+            resultType="com.encore.outpick_backend.Analyze.domain.AEResponseDTO">
+
+    SELECT
+        s.name, sum(ss.quantity) AS quantity
+    FROM
+        employee e
+    JOIN shop s USING (employee_id)
+    JOIN shop_sales ss USING (shop_id)
+    WHERE
+        employee_id = #{employee_id} AND ss.date LIKE CONCAT(#{year}, '-', LPAD(#{month}, 2, '0'), '-%')
+    GROUP BY shop_id
+
+    </select>
+   
+
+</mapper>
