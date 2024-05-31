@@ -15,7 +15,7 @@ import java.util.List;
 
 @Tag(name = "통계/분석", description = "통계/분석과 관련된 api 목록")
 @RestController
-@RequestMapping
+@RequestMapping("/analyze")
 public class AnalyzeController {
     @Autowired
     private AnalyzeService analyzeService;
@@ -27,7 +27,5 @@ public class AnalyzeController {
 
         return analyzeService.get_analyze_entire(year);
     }
-
-
 
 }
