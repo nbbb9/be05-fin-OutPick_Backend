@@ -18,6 +18,9 @@ repositories {
 
 dependencies {
 
+	// Ssemitter 
+	implementation group: 'org.springframework', name: 'spring-webmvc', version: '6.1.3'
+
 	// swagger
 	// implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
