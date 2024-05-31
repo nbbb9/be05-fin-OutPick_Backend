@@ -3,6 +3,7 @@
 
 <mapper namespace="com.encore.outpick_backend.Analyze.mapper.ShopSalesMapper">
 
+    <!--매장별 월 판매량-->
     <select id="read_list"
             parameterType="int"
             resultType="com.encore.outpick_backend.Analyze.domain.ShopSalesDTO">
@@ -14,4 +15,77 @@
         GROUP BY shop_id
 
     </select>
+
+    <!--특정 년도, 월, 매장, 1차분류-->
+    <select id="read_fc_list"
+            parameterType="com.encore.outpick_backend.Analyze.domain.AnalyzeFCRequestDTO"
+            resultType="com.encore.outpick_backend.Analyze.domain.AnalyzeFCResponseDTO">
+
+        <choose>
+        <when test="first_classification == '상품'">
+            SELECT SUM(ss.quantity) AS sales_quantity, p.name AS first_classification, p.product_id AS first_classification_id
+            FROM shop_sales ss
+            JOIN shop s ON ss.shop_id = s.shop_id
+            JOIN product p ON ss.product_id = p.product_id
+            WHERE s.shop_id=#{shop_id} AND YEAR(DATE)=#{year} AND MONTH(DATE)=#{month}
+            GROUP BY p.name
+        </when>
+        <when test="first_classification == '카테고리'">
+            SELECT SUM(ss.quantity) AS sales_quantity, c.name AS first_classification, c.category_id AS first_classification_id
+            FROM shop_sales ss
+            JOIN shop s ON ss.shop_id = s.shop_id
+            JOIN product p ON ss.product_id = p.product_id
+            JOIN category c ON p.category_id = c.category_id
+            WHERE s.shop_id=#{shop_id} AND YEAR(ss.DATE) = #{year} AND MONTH(ss.DATE) = #{month}
+            GROUP BY c.name
+        </when>
+        </choose>
+
+    </select>
+
+    <!--특정 년도, 월, 매장, 1차 분류, 2차 분류-->
+    <select id="read_sc_list"
+            parameterType="com.encore.outpick_backend.Analyze.domain.AnalyzeSCRequestDTO"
+            resultType="com.encore.outpick_backend.Analyze.domain.AnalyzeSCResponseDTO">
+
+        <choose>
+            <when test="first_classification == '카테고리' and second_classification == '색상'">
+                SELECT SUM(ss.quantity) AS sales_quantity, c.name AS first_classification, p.color AS second_classification
+                FROM shop_sales ss
+                JOIN shop s ON ss.shop_id = s.shop_id
+                JOIN product p ON ss.product_id = p.product_id
+                JOIN category c ON p.category_id = c.category_id
+                WHERE YEAR(ss.DATE) = #{year} AND MONTH(ss.DATE) = #{month} AND s.shop_id=#{shop_id} AND c.name=#{first_choice}
+                GROUP BY c.name, p.color
+            </when>
+            <when test="first_classification == '카테고리' and second_classification == '성별'">
+                SELECT SUM(ss.quantity) AS sales_quantity, c.name AS first_classification, p.gender AS second_classification
+                FROM shop_sales ss
+                JOIN shop s ON ss.shop_id = s.shop_id
+                JOIN product p ON ss.product_id = p.product_id
+                JOIN category c ON p.category_id = c.category_id
+                WHERE YEAR(ss.DATE) = #{year} AND MONTH(ss.DATE) = #{month} AND s.shop_id=#{shop_id} AND c.name=#{first_choice}
+                GROUP BY c.name, p.gender
+            </when>
+            <when test='first_classification == "카테고리" and second_classification == "핏"'>
+                SELECT SUM(ss.quantity) AS sales_quantity, c.name AS first_classification, p.fit AS second_classification
+                FROM shop_sales ss
+                JOIN shop s ON ss.shop_id = s.shop_id
+                JOIN product p ON ss.product_id = p.product_id
+                JOIN category c ON p.category_id = c.category_id
+                WHERE YEAR(ss.DATE) = #{year} AND MONTH(ss.DATE) = #{month} AND s.shop_id=#{shop_id} AND c.name=#{first_choice}
+                GROUP BY c.name, p.fit
+            </when>
+            <when test="first_classification == '상품' and second_classification == '색상'">
+                SELECT sum(quantity) AS sales_quantity, p.name AS first_classification, p.color AS second_classification
+                FROM shop_sales ss
+                JOIN shop s ON ss.shop_id = s.shop_id
+                JOIN product p ON ss.product_id = p.product_id
+                WHERE YEAR(ss.DATE) = #{year} AND MONTH(ss.DATE) = #{month} AND s.shop_id=#{shop_id} AND p.name =#{first_choice}
+                GROUP BY p.color
+            </when>
+        </choose>
+
+    </select>
+
 </mapper>
