@@ -11,11 +11,13 @@
             p.product_id AS product_id,
             p.name AS product_name,
             ss.stock AS stock,
-            p.category AS category
+            p.name AS category
         FROM
             shop_stock ss
         JOIN
             product p ON ss.product_id=p.product_id
+        JOIN
+            category c ON p.category_id=c.category_id
         WHERE
             ss.shop_id = #{shopid}
 
