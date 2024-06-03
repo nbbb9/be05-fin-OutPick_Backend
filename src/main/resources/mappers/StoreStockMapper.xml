@@ -8,11 +8,16 @@
             resultType="com.encore.outpick_backend.Store.domain.StoreStockDTO">
 
         SELECT
-            *
+            p.product_id AS product_id,
+            p.name AS product_name,
+            ss.stock AS stock,
+            p.category AS category
         FROM
-            shop_stock
+            shop_stock ss
+        JOIN
+            product p ON ss.product_id=p.product_id
         WHERE
-            shop_id = #{shopid}
+            ss.shop_id = #{shopid}
 
     </select>
 

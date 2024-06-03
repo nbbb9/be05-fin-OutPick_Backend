@@ -7,11 +7,9 @@ import java.util.Date;
 @Data
 public class StoreStockDTO {
 
-    private int shop_stock_id;//매장 재고 ID
-    private int shop_id;//매장 ID
     private int product_id;//상품ID
+    private String product_name;//상품 이름
     private int stock;//재고량
-    private Date stock_date;//입고일
-    private int discount;//할인울
+    private String category;//카테고리
 
 }
