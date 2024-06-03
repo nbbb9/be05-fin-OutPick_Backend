@@ -1,6 +1,5 @@
 package com.encore.outpick_backend.Analyze.controller;
 
-import com.encore.outpick_backend.Analyze.domain.AnalyzeDTO;
 import com.encore.outpick_backend.Analyze.domain.AnalyzeEntireVO;
 import com.encore.outpick_backend.Analyze.service.AnalyzeService;
 import io.swagger.v3.oas.annotations.Operation;

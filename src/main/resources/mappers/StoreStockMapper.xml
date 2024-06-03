@@ -30,7 +30,7 @@
 
         SELECT
             ss.shop_stock_id AS shop_stock_id,
-            ss.date AS date,
+            ss.stock_date AS date,
             ss.discount AS discount,
             p.product_id AS product_id,
             p.season AS season,
