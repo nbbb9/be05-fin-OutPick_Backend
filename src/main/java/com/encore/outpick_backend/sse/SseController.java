@@ -38,12 +38,8 @@ public class SseController {
             );
         } catch (IOException e) {  
             throw new RuntimeException(e);  
-        }  
-
+        }
         return ResponseEntity.ok(emitter);
-
     }
-    
-
 
 }

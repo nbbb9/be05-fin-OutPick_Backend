@@ -1,7 +1,6 @@
 package com.encore.outpick_backend.Proposal.domain;
 
 import lombok.Data;
-
 import java.time.LocalDateTime;
 
 @Data

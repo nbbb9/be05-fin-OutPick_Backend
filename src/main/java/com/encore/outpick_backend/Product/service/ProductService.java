@@ -1,16 +1,13 @@
 package com.encore.outpick_backend.Product.service;
 
 import java.util.List;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.encore.outpick_backend.Product.domain.ProductDTO;
 import com.encore.outpick_backend.Product.mapper.ProductMapper;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-
+@Slf4j
 @Service
 public class ProductService {
     
@@ -19,18 +16,19 @@ public class ProductService {
     
     // 상품 리스트 조회
     public List<ProductDTO> read_product_list() {
-        System.out.println(">>> debug Product Service read_product_list");
+        log.info("read_product_list Service");
         return productMapper.read_product_list();
-    }
+    }//read_product_list end
 
     // 상품 단일 조회
     public List<ProductDTO> read_product(Integer product_id) {
-        System.out.println(">>> debug Product Service read_product");
+        log.info("read_product Service");
         return productMapper.read_product(product_id);
-    }
+    }//read_product end
 
     public void update_product_discount(Integer product_id, Integer discount) {
+        log.info("update_product_discount Service");
         productMapper.update_product_discount(product_id, discount);
-        System.out.println(">>> debug Product Service update_product_rate");
-    }
+    }//update_product_discount end
+
 }

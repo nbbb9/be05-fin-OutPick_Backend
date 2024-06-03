@@ -1,8 +1,6 @@
 package com.encore.outpick_backend.Stock.domain;
 
-import com.encore.outpick_backend.Product.domain.GenderEnum;
 import lombok.Data;
-
 import java.time.LocalDateTime;
 
 @Data

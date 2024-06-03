@@ -1,14 +1,11 @@
 package com.encore.outpick_backend.Employee.service;
 
 import java.util.List;
-
 import com.encore.outpick_backend.Login.domain.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.encore.outpick_backend.Employee.domain.EmployeeDTO;
 import com.encore.outpick_backend.Employee.mapper.EmployeeMapper;
-
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -44,7 +41,9 @@ public class EmployeeService {
 
     //로그인한 사원의 정보를 인포윈도우에 출력
     public List<EmployeeDTO> read_employee_infowindow(LoginDTO loginDTO){
+        log.info("debug : service - read_employee_infowindow");
+
         return employeeMapper.read_employee_infowindow(loginDTO);
-    }
+    }//read_employee_infowindow end
     
 }

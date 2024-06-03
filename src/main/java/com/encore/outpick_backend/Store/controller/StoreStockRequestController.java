@@ -12,13 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @Slf4j
 @RestController
-@Tag(name = "재고요청서_매장프로그램")
-@RequestMapping("/stockrequest")
+@Tag(name = "재고요청서_매장프로그램", description = "매장 재고요청서와 관련된 API")
+@RequestMapping("/store/stockrequest")
 public class StoreStockRequestController {
 
     @Autowired

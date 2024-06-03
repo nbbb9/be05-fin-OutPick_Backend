@@ -10,19 +10,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @Slf4j
 @RestController
-@Tag(name = "판매 내역")
-@RequestMapping("/sales")
+@Tag(name = "판매내역 _ 매장프로그램", description = "판매내역과 관련된 API")
+@RequestMapping("/store/sales")
 public class StoreSalesController {
 
     @Autowired
     private StoreSalseService storeSalseService;
 
-    @Operation(summary = "판매 내역 리스트")
+    @Operation(summary = "판매 내역 리스트 조회")
     @GetMapping("/list/{shopid}")
     public ResponseEntity<List<StoreSalesDTO>> read_sales_list(@PathVariable("shopid") int shopid){
         log.info("판매 내역 리스트 Controller. 매장 ID : " , shopid);

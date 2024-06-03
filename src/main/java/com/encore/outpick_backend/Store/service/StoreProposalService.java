@@ -6,6 +6,7 @@ import com.encore.outpick_backend.Store.mapper.StoreProposalMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -20,7 +21,7 @@ public class StoreProposalService {
         storeProposalMapper.create_proposal(storeAddProposalDTO);
     }//create_proposal end
 
-    public StoreReadProposalDTO  read_proposals(int shopid){
+    public List<StoreReadProposalDTO> read_proposals(int shopid){
         log.info("건의사항 리스트 Service");
 
         return storeProposalMapper.read_proposals(shopid);
