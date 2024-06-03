@@ -2,7 +2,7 @@ package com.encore.outpick_backend.Store.domain;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Data
 public class StoreSalesDTO {

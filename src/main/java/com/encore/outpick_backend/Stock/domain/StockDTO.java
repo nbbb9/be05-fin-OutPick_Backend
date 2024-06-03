@@ -1,14 +1,9 @@
 package com.encore.outpick_backend.Stock.domain;
 
+import lombok.Data;
 import java.time.LocalDateTime;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Getter
-@Setter
-@ToString
+@Data
 public class StockDTO {
     private Integer stock_id;
     private Integer warehouse_id;

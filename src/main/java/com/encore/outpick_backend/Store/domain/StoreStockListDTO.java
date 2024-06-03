@@ -2,8 +2,6 @@ package com.encore.outpick_backend.Store.domain;
 
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
 public class StoreStockListDTO {
 
