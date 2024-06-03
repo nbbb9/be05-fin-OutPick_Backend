@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @Tag(name = "건의사항")
-@RequestMapping("/proposal")
+@RequestMapping("/store/proposal")
 public class StoreProposalController {
 
     @Autowired

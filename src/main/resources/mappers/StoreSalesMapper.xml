@@ -9,9 +9,11 @@
 
         SELECT
             ss.shop_sales_id AS shop_sales_id,
-            p.product_name AS product_name,
             ss.quantity AS quantity,
-            ss.date AS date
+            ss.date AS date,
+            p.product_name AS product_name,
+            p.color AS color,
+            p.size AS size
         FROM
             shop_sales ss
         JOIN

@@ -5,21 +5,45 @@
     <!--재고 리스트-->
     <select id="read_stock_list"
             parameterType="int"
-            resultType="com.encore.outpick_backend.Store.domain.StoreStockDTO">
+            resultType="com.encore.outpick_backend.Store.domain.StoreStockListDTO">
 
         SELECT
             p.product_id AS product_id,
             p.name AS product_name,
-            ss.stock AS stock,
-            c.name AS category
+            p.color AS color,
+            p.size AS size,
+            ss.shop_stock_id AS shop_stock_id,
+            ss.stock AS stock
         FROM
             shop_stock ss
         JOIN
             product p ON ss.product_id=p.product_id
-        JOIN
-            category c ON p.category_id=c.category_id
         WHERE
             ss.shop_id = #{shopid}
+
+    </select>
+
+    <!--재고 상세조회-->
+    <select id="read_stock_product"
+            parameterType="int"
+            resultType="com.encore.outpick_backend.Store.domain.StoreStockProductDTO">
+
+        SELECT
+            ss.shop_stock_id AS shop_stock_id,
+            ss.date AS date,
+            ss.discount AS discount,
+            p.product_id AS product_id,
+            p.season AS season,
+            p.gender AS gender,
+            p.fit AS fit,
+            p.consumer_price AS consumer_price,
+            p.first_cost AS first_cost
+        FROM
+            shop_stock ss
+        JOIN
+            product p ON ss.product_id=p.product_id
+        WHERE
+            ss.shop_stock_id=#{stockid}
 
     </select>
 

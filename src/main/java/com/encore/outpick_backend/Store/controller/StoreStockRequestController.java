@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @Tag(name = "재고요청서_매장프로그램")
-@RequestMapping("/stockrequest")
+@RequestMapping("/store/stockrequest")
 public class StoreStockRequestController {
 
     @Autowired

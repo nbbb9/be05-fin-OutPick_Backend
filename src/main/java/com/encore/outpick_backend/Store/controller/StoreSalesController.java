@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @Tag(name = "판매 내역")
-@RequestMapping("/sales")
+@RequestMapping("/store/sales")
 public class StoreSalesController {
 
     @Autowired
