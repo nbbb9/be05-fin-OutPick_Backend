@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -35,7 +36,7 @@ public class WareHouseController {
     // 창고 단일 조회
     @GetMapping("/warehouse/{warehouse_id}")
     @Operation(summary = "창고 단일 목록" , description = "창고 단일목록을 불러오는 api")
-    public ResponseEntity<List<WareHouseDTO>> read_warehouse(@RequestParam(value = "warehouse_id") Integer warehouse_id) {
+    public ResponseEntity<List<WareHouseDTO>> read_warehouse(@PathVariable Integer warehouse_id) {
         System.out.println(">>>> debug WareHouse Controller GET: /warehouse/{warehouse_id}");
         List<WareHouseDTO> result = wareHouseService.read_warehouse(warehouse_id);
         return new ResponseEntity<List<WareHouseDTO>>(result,HttpStatus.OK);
