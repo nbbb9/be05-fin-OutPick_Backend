@@ -8,7 +8,7 @@
             resultType="com.encore.outpick_backend.Store.domain.StoreLoginDTO">
 
         SELECT
-            name, manager, email, shop_id;
+            name, manager, email, shop_id
         FROM
             shop
         WHERE
