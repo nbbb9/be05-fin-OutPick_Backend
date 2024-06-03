@@ -10,12 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @Slf4j
 @RestController
-@Tag(name = "매장 재고")
+@Tag(name = "매장재고 _ 매장프로그램", description = "매장재고와 관련된 API")
 @RequestMapping("/store/stock")
 public class StoreStockController {
 

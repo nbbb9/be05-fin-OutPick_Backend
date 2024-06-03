@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "건의문", description = "건의문과 관련된 API")
 @Slf4j
 @RestController
 @RequestMapping("/proposal")
+@Tag(name = "건의문", description = "건의문과 관련된 API")
 public class ProposalController {
 
     @Autowired
@@ -26,7 +26,7 @@ public class ProposalController {
     private LoginController loginController;
 
     // 건의문 List 반환
-    @Operation(summary = "건의문 리스트" , description = "건의문 목록을 불러오는 api")
+    @Operation(summary = "건의문 리스트" , description = "건의문 목록을 불러오는 API")
     @GetMapping("/list")
     public ResponseEntity<List<ProposalDTO>> get_proposal(@RequestHeader("login_token") String token) {
         LoginDTO user = loginController.getTokenInfo(token);
@@ -36,7 +36,7 @@ public class ProposalController {
     }
 
     // 건의문 상세보기 반환
-    @Operation(summary = "건의문 상세보기" , description = "건의문 상세보기를 불러오는 api")
+    @Operation(summary = "건의문 상세보기" , description = "건의문 상세보기를 불러오는 API")
     @GetMapping("/{proposal_id}")
     public ResponseEntity<?> read_proposal(@PathVariable int proposal_id, @RequestHeader("login_token") String token) {
         LoginDTO user = loginController.getTokenInfo(token);

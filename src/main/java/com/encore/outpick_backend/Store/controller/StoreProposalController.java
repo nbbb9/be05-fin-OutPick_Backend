@@ -10,12 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @Slf4j
 @RestController
-@Tag(name = "건의사항_매장프로그램")
+@Tag(name = "건의사항_매장프로그램", description = "건의사항과 관련된 API")
 @RequestMapping("/store/proposal")
 public class StoreProposalController {
 
@@ -37,6 +36,5 @@ public class StoreProposalController {
 
         return new ResponseEntity<>(storeProposalService.read_proposals(shopid), HttpStatus.OK);
     }//read_proposals end
-
 
 }

@@ -11,14 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/stockrequest")
-@Tag(name = "재고요청서")
+@Tag(name = "재고요청서", description = "재고요청서와 관련된 API")
 public class StockRequestController {
 
     private final StockRequestService stockRequestService;
@@ -35,7 +34,6 @@ public class StockRequestController {
         }else { // 관리자
             return new ResponseEntity<List<StockRequestDTO>>(stockRequestService.read_sr_list(), HttpStatus.OK);
         }
-
     }
 
     @Operation(summary = "재고요청서 단일 조회", description = "관리자 : 모든 재고요청서 단일 조회 / 사원 : 담당 매장의 재고요청서만 단일 조회 가능.")
@@ -49,7 +47,6 @@ public class StockRequestController {
         }else { // 관리자
             return new ResponseEntity<StockRequestDTO>(stockRequestService.read_sr_detail(id), HttpStatus.OK);
         }
-
     }
 
     // 재고요청서를 승인한다.
@@ -67,8 +64,5 @@ public class StockRequestController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
-
-
-
 
 }

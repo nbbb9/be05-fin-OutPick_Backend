@@ -1,7 +1,6 @@
 package com.encore.outpick_backend.Stock.controller;
 
 import java.util.List;
-
 import com.encore.outpick_backend.Login.controller.LoginController;
 import com.encore.outpick_backend.Login.domain.LoginDTO;
 import com.encore.outpick_backend.Stock.domain.ShopStockDTO;
@@ -10,16 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import com.encore.outpick_backend.Stock.domain.StockDTO;
 import com.encore.outpick_backend.Stock.service.StockService;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Slf4j
 @RestController
-@Tag(name = "재고", description = "재고와 관련된 api 목록")
+@Tag(name = "재고", description = "재고와 관련된 API")
 public class StockController {
     @Autowired
     private StockService stockService;
@@ -30,7 +27,7 @@ public class StockController {
     @GetMapping("/officestock")
     @Operation(summary = "창고 재고 조회" , description = "창고 재고 목록을 불러오는 api")
     public ResponseEntity<List<StockDTO>> read_stock() {
-        System.out.println(">>>> debug Stock Controller GET: /officestock");
+        log.info("read_stock Controller");
         List<StockDTO> result = stockService.read_stock();
         return new ResponseEntity<List<StockDTO>>(result,HttpStatus.OK);
     }
@@ -42,7 +39,5 @@ public class StockController {
         LoginDTO user = loginController.getTokenInfo(token);
         return new ResponseEntity<List<ShopStockDTO>>(stockService.read_stock_shop(user.getEmployee_number(), shop_id), HttpStatus.OK);
     }
-
-
 
 }
