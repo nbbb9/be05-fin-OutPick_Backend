@@ -2,41 +2,30 @@ package com.encore.outpick_backend.Login.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.encore.outpick_backend.Login.domain.LoginDTO;
 import com.encore.outpick_backend.Login.service.LoginService;
-
 import io.jsonwebtoken.security.Keys;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
-
 import javax.crypto.SecretKey;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Encoders;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Slf4j
 @RestController
-@Tag(name = "유저", description = "ㅎㅎ")
+@Tag(name = "로그인", description = "로그인과 관련된 API")
 @RequestMapping("/user")
-
 public class LoginController {
 
     @Autowired
@@ -114,6 +103,5 @@ public class LoginController {
 
         return result;
     }   // getToken end
-    
     
 }

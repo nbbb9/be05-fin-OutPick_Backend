@@ -11,9 +11,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
-@Tag(name = "건의사항")
+@Tag(name = "건의사항_매장프로그램")
 @RequestMapping("/store/proposal")
 public class StoreProposalController {
 
@@ -30,7 +32,7 @@ public class StoreProposalController {
 
     @Operation(summary = "건의사항 리스트 조회")
     @GetMapping("/list/{shopid}")
-    public ResponseEntity<StoreReadProposalDTO> read_proposals (@PathVariable("shopid") int shopid){
+    public ResponseEntity<List<StoreReadProposalDTO>> read_proposals (@PathVariable("shopid") int shopid){
         log.info("건의사항 리스트 Controller");
 
         return new ResponseEntity<>(storeProposalService.read_proposals(shopid), HttpStatus.OK);

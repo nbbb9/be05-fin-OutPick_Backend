@@ -2,9 +2,7 @@ package com.encore.outpick_backend.Employee.domain;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Data;
 
 @Data

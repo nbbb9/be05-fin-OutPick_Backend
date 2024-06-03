@@ -1,12 +1,8 @@
 package com.encore.outpick_backend.Product.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
-@Getter
-@Setter
-@ToString
+@Data
 public class ProductDTO {
     private Integer product_id;
     private Integer category_id;
