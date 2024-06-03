@@ -39,7 +39,7 @@ public class ProductController {
     // 상품 단일 조회
     @GetMapping("/product/{product_id}")
     @Operation(summary = "상품 조회" , description = "상품을 단일 조회하는 api")
-    public ResponseEntity<List<ProductDTO>> read_product (@RequestParam Integer product_id) {
+    public ResponseEntity<List<ProductDTO>> read_product (@PathVariable Integer product_id) {
         System.out.println(">>>> debug ProductController GET: /product/{product_id}");
         List<ProductDTO> result = productService.read_product(product_id);
         return new ResponseEntity<List<ProductDTO>>(result,HttpStatus.OK);
