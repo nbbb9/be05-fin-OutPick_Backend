@@ -8,9 +8,14 @@
             resultType="com.encore.outpick_backend.Store.domain.StoreSalesDTO">
 
         SELECT
-            *
+            ss.shop_sales_id AS shop_sales_id,
+            p.product_name AS product_name,
+            ss.quantity AS quantity,
+            ss.date AS date
         FROM
-            shop_sales
+            shop_sales ss
+        JOIN
+            product p ON ss.product_id=p.product_id
         WHERE
             shop_id = #{shopid}
 
