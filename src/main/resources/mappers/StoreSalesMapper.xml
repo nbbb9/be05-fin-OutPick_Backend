@@ -11,7 +11,7 @@
             ss.shop_sales_id AS shop_sales_id,
             ss.quantity AS quantity,
             ss.date AS date,
-            p.product_name AS product_name,
+            p.name AS product_name,
             p.color AS color,
             p.size AS size
         FROM
