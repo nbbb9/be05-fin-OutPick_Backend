@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "건의문", description = "건의문과 관련된 api 목록")
+@Tag(name = "건의문", description = "건의문과 관련된 API")
 @Slf4j
 @RestController
 @RequestMapping("/proposal")
 public class ProposalController {
 
-     @Autowired
-     private ProposalService proposalService;
+    @Autowired
+    private ProposalService proposalService;
 
     @Autowired
     private LoginController loginController;
@@ -77,4 +77,5 @@ public class ProposalController {
         log.info("debug >> ProposalController: put_proposal_completed");
         return ResponseEntity.ok().build();
     }
+
 }

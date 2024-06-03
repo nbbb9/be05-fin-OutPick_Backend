@@ -20,15 +20,14 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/productionrequest")
-@Tag(name = "생산요청서")
+@Tag(name = "생산요청서", description = "생산요청서와 관련된 API")
 public class ProductionRequestController {
 
     private final ProductionRequestService productionRequestService;
     private final LoginController loginController;
 
-
-    // 관리자 or  사원 입장에서 생산요청서 리스트 조회
-    @Operation(summary = "생산요청서 전체 조회", description = "관리자 : 모든 생산요청서 리스트 전체 조회 / 사원 : 자신이 작성한 것들만")
+    // 관리자 or사원 입장에서 생산요청서 리스트 조회
+    @Operation(summary = "생산요청서 리스트 조회", description = "관리자 : 모든 생산요청서 리스트 전체 조회 / 사원 : 자신이 작성한 것들만")
     @GetMapping("/list")
     public ResponseEntity<List<ProductionRequestDTO>> read_pr_list(@RequestHeader("login_token") String token){
         LoginDTO user = loginController.getTokenInfo(token);

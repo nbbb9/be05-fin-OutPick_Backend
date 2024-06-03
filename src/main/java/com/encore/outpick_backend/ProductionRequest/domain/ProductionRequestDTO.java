@@ -13,7 +13,6 @@ public class ProductionRequestDTO {
     int amount;
     LocalDateTime request_date;
     String approval;
-
     String employee_name; // 생산요청서를 작성한 담당사원의 이름.
     String product_name; // 상품명
     int product_first_cost; // 상품 원가

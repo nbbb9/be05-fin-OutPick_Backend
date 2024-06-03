@@ -18,15 +18,15 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@Tag(name = "매장")
 @RequestMapping("/shop")
+@Tag(name = "매장", description = "매장과 관련된 API")
 public class ShopController {
     @Autowired
     private ShopService shopService;
     @Autowired
     private LoginController lc;
 
-    @Operation(summary = "로그인한 사원이 담당한 매장을 리스트로 가져오기", description = "매장 리스트")
+    @Operation(summary = "로그인한 사원이 담당한 매장을 리스트로 조회", description = "매장 리스트 조회")
     @GetMapping("/tolist")
     public ResponseEntity<List<ShopDTO>> get_shop_list(@RequestHeader("login_token") String token){
 
@@ -46,7 +46,7 @@ public class ShopController {
         return new ResponseEntity<List<ShopDTO>>(shopService.get_all_shop(), HttpStatus.OK);
     }//getAllShop end
 
-    @Operation(summary = "로그인한 사원이 담당한 매장의 상세정보 확인", description = "매장 상세정보 확인")
+    @Operation(summary = "로그인한 사원이 담당한 매장의 상세정보 조회", description = "매장 상세정보 조회")
     @GetMapping("/detail/{shopid}")
     public ResponseEntity<ShopDTO> get_shop_detail(@RequestHeader("login_token") String token, @PathVariable("shopid") int shopId){
 
