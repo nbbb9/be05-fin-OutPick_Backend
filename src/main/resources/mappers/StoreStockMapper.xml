@@ -11,7 +11,7 @@
             p.product_id AS product_id,
             p.name AS product_name,
             ss.stock AS stock,
-            p.name AS category
+            c.name AS category
         FROM
             shop_stock ss
         JOIN
