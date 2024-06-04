@@ -40,7 +40,10 @@ public class SseEmitters {
 
     //건의문 해결방안 작성시 매장에 알림
     public void proposal_solution(int shop_id, int proposal_id){
-        String message = "매장 ID : " + shop_id + "건의문 ID : " + proposal_id;
+        
+        SseDTO dto = new SseDTO();
+        dto.setShop_id(shop_id);
+        dto.setProposal_id(proposal_id);
 
         log.info("emitter 검증 전");
 
@@ -61,9 +64,10 @@ public class SseEmitters {
             try{
                 emitter.send(SseEmitter.event()
                         .name("proposal_solution")
-                        .data(message));
+                        .data(dto));
             }catch(IOException e){
-                log.error(message, e);
+                emitter.complete();
+                log.error("error");
             }
         });
 
