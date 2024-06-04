@@ -51,7 +51,7 @@ public class LoginController {
         String result;
 
         if(map.containsKey("성공")){
-            result = getToken(map.get("성공").getEmployee_number(), loginInfo.getRole());
+            result = getToken(map.get("성공").getEmployee_number(), loginInfo.getRole(), map.get("성공").getName());
         }else{
             result = "로그인 실패하셨습니다!";
         }
@@ -66,13 +66,14 @@ public class LoginController {
     }   // getInfo end
     
 
-    public String getToken(int employee_number, String role){
+    public String getToken(int employee_number, String role, String name){
 
         log.info("secretkey : " + Encoders.BASE64.encode(secretKey.getEncoded()));
 
         String token = Jwts.builder()
                             .claim("employee_number", employee_number)
                             .claim("role", role)
+                            .claim("name", name)
                             .expiration(new Date(System.currentTimeMillis() + 1000*60*12))  // 제한기간 설정
                             .issuedAt(new Date())   // token 발급날짜
                             .signWith(secretKey)
@@ -91,15 +92,18 @@ public class LoginController {
 
         int employee_number = claims.get("employee_number", Integer.class);
         String role = claims.get("role", String.class);
+        String name = claims.get("name", String.class);
                         
 
         log.info("getInfo : " + employee_number );
         log.info("getInfo : " + role);
+        log.info("getInfo : " + name);
 
         LoginDTO result = new LoginDTO();
 
         result.setEmployee_number(employee_number);
         result.setRole(role);
+        result.setName(name);
 
         return result;
     }   // getToken end
