@@ -5,11 +5,11 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class ResultDTO {
+public class AEResultDTO {
     private List<String> shop_list;
     private List<Integer> sales_list;
 
-    public ResultDTO () {
+    public AEResultDTO() {
         this.shop_list = new ArrayList<>();
         this.sales_list = new ArrayList<>();
     }

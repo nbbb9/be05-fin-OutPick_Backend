@@ -2,7 +2,7 @@ package com.encore.outpick_backend.Analyze.controller;
 
 import com.encore.outpick_backend.Analyze.domain.*;
 import com.encore.outpick_backend.Analyze.service.AnalyzeService;
-import com.encore.outpick_backend.Analyze.service.ShopSalesService;
+import com.encore.outpick_backend.Analyze.service.AnalyzeShopSalesService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ public class AnalyzeController {
     AnalyzeService analyzeService;
 
     @Autowired
-    ShopSalesService shopSalesService;
+    AnalyzeShopSalesService analyzeShopSalesService;
 
     // 회사의 월별 판매량 분석
     @Operation(summary = "회사의 월별 총 판매량" , description = "년도를 선택하여 회사의 월별 매출을 분석할 수 있다.")
@@ -36,10 +36,10 @@ public class AnalyzeController {
     // 매장별 월 판매량을 조회할 수 있다.
     @Operation(summary = "매장별 월 판매량", description = "년도와 월을 입력하여 매장별 월 판매량을 분석할 수 있다.")
     @GetMapping("/sales/{year}/{month}")
-    public ResponseEntity<List<ShopSalesDTO>> read_anakyze_list(@PathVariable("year") int year, @PathVariable("month") int month){
+    public ResponseEntity<List<AnalyzeShopSalesDTO>> read_anakyze_list(@PathVariable("year") int year, @PathVariable("month") int month){
         log.info("read_anakyze_list Controller");
 
-        return new ResponseEntity<List<ShopSalesDTO>>(shopSalesService.read_list(year, month), HttpStatus.OK);
+        return new ResponseEntity<List<AnalyzeShopSalesDTO>>(analyzeShopSalesService.read_list(year, month), HttpStatus.OK);
     }//read_list
 
     //특정 매장의 특정 월 특정 상품 / 특정 색깔 / 판매량을 조회할 수 있다.(좌측 하단의 그래프에서 특정 매장을 눌렀을 때)
@@ -48,7 +48,7 @@ public class AnalyzeController {
     public ResponseEntity<List<AnalyzeFCResponseDTO>> read_fc_list(@RequestBody AnalyzeFCRequestDTO analyzeFCRequestDTO){
         log.info("read_fc_list Controller");
 
-        return new ResponseEntity<>(shopSalesService.read_fc_list(analyzeFCRequestDTO), HttpStatus.OK);
+        return new ResponseEntity<>(analyzeShopSalesService.read_fc_list(analyzeFCRequestDTO), HttpStatus.OK);
     }//read_fc_list
 
     //특정 매장의 특정 월 특정 상품 / 특정 색깔 / 판매량을 조회할 수 있다.(좌측 하단의 그래프에서 특정 매장을 눌렀을 때)
@@ -57,7 +57,7 @@ public class AnalyzeController {
     public ResponseEntity<List<AnalyzeSCResponseDTO>> read_sc_list(@RequestBody AnalyzeSCRequestDTO analyzeSCRequestDTO){
         log.info("read_sc_list Controller");
 
-        return new ResponseEntity<>(shopSalesService.read_sc_list(analyzeSCRequestDTO), HttpStatus.OK);
+        return new ResponseEntity<>(analyzeShopSalesService.read_sc_list(analyzeSCRequestDTO), HttpStatus.OK);
     }//read_fc_list
 
 }
