@@ -8,7 +8,7 @@
         resultType="com.encore.outpick_backend.Login.domain.LoginDTO">
 
         SELECT 
-            employee_number, password
+            employee_number, password, name
         FROM 
             employee
         WHERE 
@@ -21,7 +21,7 @@
         resultType="com.encore.outpick_backend.Login.domain.LoginDTO">
 
         SELECT 
-            employee_number, password
+            employee_number, password, name
         FROM 
             admin
         WHERE 
