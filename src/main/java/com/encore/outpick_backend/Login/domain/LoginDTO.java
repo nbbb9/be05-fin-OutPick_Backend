@@ -8,5 +8,5 @@ public class LoginDTO {
     private int employee_number;
     private String password;
     private String role;
-
+    private String name;
 }

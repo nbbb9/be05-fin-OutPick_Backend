@@ -1,6 +1,7 @@
 package com.encore.outpick_backend.sse;
 
 import java.io.IOException;
+import java.lang.IllegalStateException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -40,15 +41,33 @@ public class SseEmitters {
     //건의문 해결방안 작성시 매장에 알림
     public void proposal_solution(int shop_id, int proposal_id){
         String message = "매장 ID : " + shop_id + "건의문 ID : " + proposal_id;
+
+        log.info("emitter 검증 전");
+
+        emitters.removeIf(emitter -> {
+            try {
+                emitter.send(SseEmitter.event());
+                return false; // 보내기 성공했으므로 유효한 SseEmitter
+            } catch (IllegalStateException e) {
+                return true; // 보내기 실패했으므로 유효하지 않은 SseEmitter
+            } catch (IOException e) {
+                return true;
+            }
+        });
+
+        log.info("emitter 검증 후");
+
         emitters.forEach(emitter -> {
             try{
                 emitter.send(SseEmitter.event()
                         .name("proposal_solution")
                         .data(message));
             }catch(IOException e){
-                throw new RuntimeException(e);
+                log.error(message, e);
             }
         });
+
+        log.info("emitter 이벤트 보내기 끝");
     }
 
 }
