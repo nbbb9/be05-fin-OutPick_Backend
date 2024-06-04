@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import com.encore.outpick_backend.Analyze.domain.AERequestDTO;
-import com.encore.outpick_backend.Analyze.domain.ResultDTO;
+import com.encore.outpick_backend.Analyze.domain.AEResultDTO;
 import com.encore.outpick_backend.Analyze.service.AnalyzeEmployeeService;
 import com.encore.outpick_backend.Login.controller.LoginController;
 import com.encore.outpick_backend.Login.domain.LoginDTO;
@@ -29,7 +29,7 @@ public class AnalyzeEmployeeController {
 
     @Operation(summary = "담당매장 월별분석", description = "사원이 담당한 매장의 월별 판매량을 분석.")
     @GetMapping("/employee_analyze")
-    public ResponseEntity<ResultDTO> read_employee_analyze(@RequestHeader("login_token") String token, @RequestParam int employee_id, @RequestParam int month, @RequestParam int year) {
+    public ResponseEntity<AEResultDTO> read_employee_analyze(@RequestHeader("login_token") String token, @RequestParam int employee_id, @RequestParam int month, @RequestParam int year) {
         log.info(">>> debug AnalyzeEmployeeController GET: /employee_analyze/{employee_id}");
 
         LoginDTO user = loginController.getTokenInfo(token);
@@ -41,7 +41,7 @@ public class AnalyzeEmployeeController {
             params.setEmployee_id(employee_id);
             params.setMonth(month);
             params.setYear(year);           
-            return new ResponseEntity<ResultDTO>(analyzeEmployeeService.read_employee_analyze(params),HttpStatus.OK);
+            return new ResponseEntity<AEResultDTO>(analyzeEmployeeService.read_employee_analyze(params),HttpStatus.OK);
         }
     }//read_employee_analyze end
 

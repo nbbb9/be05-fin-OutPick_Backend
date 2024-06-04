@@ -4,6 +4,7 @@ import com.encore.outpick_backend.Login.domain.LoginDTO;
 import com.encore.outpick_backend.Login.controller.LoginController;
 import com.encore.outpick_backend.Proposal.domain.ProposalDTO;
 import com.encore.outpick_backend.Proposal.service.ProposalService;
+import com.encore.outpick_backend.sse.SseController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,9 @@ public class ProposalController {
 
     @Autowired
     private LoginController loginController;
+
+    @Autowired
+    private SseController sseController;
 
     // 건의문 List 반환
     @Operation(summary = "건의문 리스트" , description = "건의문 목록을 불러오는 API")
@@ -60,6 +64,7 @@ public class ProposalController {
         }
         proposalService.put_proposal_solution(proposalDTO);
         log.info("debug >> ProposalController: put_proposal_solution");
+        sseController.proposal_solution(proposalDTO.getShop_id(), proposalDTO.getProposal_id());
         return ResponseEntity.ok().build();
     }
 

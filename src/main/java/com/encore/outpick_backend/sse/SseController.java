@@ -11,7 +11,6 @@ import java.io.IOException;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Slf4j
@@ -40,6 +39,12 @@ public class SseController {
             throw new RuntimeException(e);  
         }
         return ResponseEntity.ok(emitter);
+    }
+
+    public ResponseEntity<String> proposal_solution(int shop_id, int proposal_id){
+        log.info("proposal_solution Start");
+        sseEmitters.proposal_solution(shop_id, proposal_id);
+        return ResponseEntity.ok().build();
     }
 
 }

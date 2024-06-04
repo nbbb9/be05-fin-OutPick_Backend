@@ -6,9 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface ShopSalesMapper {
+public interface AnalyzeShopSalesMapper {
 
-    public List<ShopSalesDTO> read_list(int year, int month);
+    public List<AnalyzeShopSalesDTO> read_list(int year, int month);
 
     public List<AnalyzeFCResponseDTO> read_fc_list(AnalyzeFCRequestDTO analyzeFCRequestDTO);
 
