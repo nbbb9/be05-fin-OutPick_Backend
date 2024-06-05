@@ -9,4 +9,5 @@ public class LoginDTO {
     private String password;
     private String role;
     private String name;
+    private int id;
 }
