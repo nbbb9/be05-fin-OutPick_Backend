@@ -38,7 +38,7 @@ public class ShopController {
     }//getShopList end
 
     @Operation(summary = "전체 매장 리스트 조회", description = "전체 매장 리스트")
-    @GetMapping("/detail/tolist/all")
+    @GetMapping("/tolist/all")
     public ResponseEntity<List<ShopDTO>> get_all_shop(){
 
         log.info("debug : 전체 매장 리스트로 조회 ");
