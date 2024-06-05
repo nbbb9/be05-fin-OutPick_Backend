@@ -27,7 +27,10 @@ public class EmployeeService {
     public EmployeeDTO read_employee(int employee_id) {
        log.info("debug : service - read_employee");
 
-       return employeeMapper.read_employee(employee_id);
+       EmployeeDTO emp = employeeMapper.read_employee(employee_id);
+       emp.setShop(employeeMapper.read_employee_shop(employee_id));
+
+       return emp;
     }
 
     // 특정 사원의 기본정보, 담당 매장 수정
