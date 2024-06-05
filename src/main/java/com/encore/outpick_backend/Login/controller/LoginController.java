@@ -76,7 +76,7 @@ public class LoginController {
                             .claim("role", login_info.getRole())
                             .claim("name", login_info.getName())
                             .claim("id", login_info.getId())
-                            .expiration(new Date(System.currentTimeMillis() + 1000*60*12))  // 제한기간 설정
+                            .expiration(new Date(System.currentTimeMillis() + 1000*60*60))  // 제한기간 설정
                             .issuedAt(new Date())   // token 발급날짜
                             .signWith(secretKey)
                             .compact();
