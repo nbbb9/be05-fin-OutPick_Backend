@@ -17,6 +17,9 @@ public interface EmployeeMapper {
     // 특정 사원 상세정보 조회
     public EmployeeDTO read_employee(int employee_id);
 
+    // 특정 사원이 담당하고 있는 매장 조회
+    public List<Integer> read_employee_shop(int employee_id);
+
     // 특정 사원의 기본정보, 담당 매장 수정
     public void update_employee_default(EmployeeDTO employee_info);
     public void update_employee_add(@Param("employee_id") int employee_id, @Param("addShopList") List<Integer> addShopList);

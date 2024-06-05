@@ -23,6 +23,17 @@
 
     </select>
 
+    <!-- 특정 사원의 담당 매장 정보 조회 -->
+    <select id="read_employee_shop"
+        parameterType="java.lang.Integer"
+        resultType="java.lang.Integer">
+
+        SELECT shop_id
+        FROM shop
+        WHERE employee_id = #{employee_id}
+
+    </select>
+
     <!-- 사원의 기본 정보 수정 -->
     <update id="update_employee_default"
         parameterType="com.encore.outpick_backend.Employee.domain.EmployeeDTO">
