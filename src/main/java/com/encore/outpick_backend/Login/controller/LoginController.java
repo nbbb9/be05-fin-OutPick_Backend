@@ -51,6 +51,7 @@ public class LoginController {
         String result;
 
         if(map.containsKey("성공")){
+            map.get("성공").setRole(loginInfo.getRole());
             result = getToken(map.get("성공"));
         }else{
             result = "로그인 실패하셨습니다!";
