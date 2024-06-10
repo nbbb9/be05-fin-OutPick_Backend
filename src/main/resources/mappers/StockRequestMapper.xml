@@ -100,7 +100,7 @@
             parameterType="int">
 
         UPDATE stock_request
-        SET admin_approval = '승인'
+        SET admin_approval = '승인', admin_id = (select admin_id from admin where employee_number = #{employee_number})
         WHERE stock_request_id = #{id}
     </update>
 

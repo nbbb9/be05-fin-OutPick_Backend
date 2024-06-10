@@ -62,7 +62,7 @@ public class ProductionRequestController {
             // 일반 사원일 경우, 아무것도 일어나지 않는다.
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else { // 관리자
-            productionRequestService.confirm_pr(id);
+            productionRequestService.confirm_pr(user.getEmployee_number(), id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }

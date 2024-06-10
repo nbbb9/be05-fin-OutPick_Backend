@@ -40,8 +40,8 @@ public class StockRequestService {
     }
 
     // 관리자 :  재고요청서를 승인
-    public void update_sr(int id){
-        stockRequestMapper.update_sr(id);
+    public void update_sr(int employee_number, int id){
+        stockRequestMapper.update_sr(employee_number, id);
     }
     // 사원 : 재고요청서를 승인
     public void update_sr_emp(int employee_number, int id){

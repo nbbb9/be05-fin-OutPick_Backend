@@ -94,7 +94,7 @@
         UPDATE
             production_request
         SET
-            approval = 'y'
+            approval = 'y', admin_id = (select admin_id from admin where employee_number = #{employee_number})
         WHERE
             production_request_id = #{id}
     </update>

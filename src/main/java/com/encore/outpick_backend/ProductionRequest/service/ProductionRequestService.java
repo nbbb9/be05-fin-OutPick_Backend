@@ -38,8 +38,8 @@ public class ProductionRequestService {
     }
 
     // 관리자만 생산요청서에 대해서 승인할 수 있다.
-    public void confirm_pr(int id){
-        productionRequestMapper.confirm_pr(id);
+    public void confirm_pr(int employee_number, int id){
+        productionRequestMapper.confirm_pr(employee_number, id);
     }
 
     // 영업사원은 자신이 작성한 생산요청서만을 수정할 수 있다.
