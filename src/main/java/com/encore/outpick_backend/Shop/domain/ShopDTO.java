@@ -7,6 +7,7 @@ public class ShopDTO {
 
     private int shop_id;//매장 ID
     private int employee_id;//사원 ID
+    private String employee_name; //사원 이름
     private String address;//주소
     private String contact;//연락처
     private String content;//설명

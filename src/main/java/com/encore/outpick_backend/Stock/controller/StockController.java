@@ -35,7 +35,7 @@ public class StockController {
     @GetMapping("/shopstock/{shopid}")
     @Operation(summary = "매장별 재고 조회" , description = "사원이 담당하는 매장 재고 목록을 불러오는 api")
     public ResponseEntity<List<ShopStockDTO>> read_stock_shop(@RequestHeader("login_token") String token, @PathVariable("shopid") int shop_id){
-        log.info(">>>> debug Stock Controller GET: /shopstock");
+        log.info(">>>> debug Stock Controller GET: /shopstock", shop_id);
         LoginDTO user = loginController.getTokenInfo(token);
         return new ResponseEntity<List<ShopStockDTO>>(stockService.read_stock_shop(user.getEmployee_number(), shop_id), HttpStatus.OK);
     }

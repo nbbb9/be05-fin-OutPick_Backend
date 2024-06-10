@@ -79,7 +79,7 @@ public class LoginController {
                             .expiration(new Date(System.currentTimeMillis() + 1000*60*60))  // 제한기간 설정
                             .issuedAt(new Date())   // token 발급날짜
                             .signWith(secretKey)
-                            .compact();
+                            .compact(); 
 
         return token;
     }   // getToken end

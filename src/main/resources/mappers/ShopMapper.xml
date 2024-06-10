@@ -34,15 +34,23 @@
             resultType="com.encore.outpick_backend.Shop.domain.ShopDTO">
 
             SELECT
-                *
+                e.name AS employee_name,
+                s.address AS address,
+                s.contact AS contact,
+                s.content AS content,
+                s.manager AS manager,
+                s.email AS email,
+                s.name AS name
             FROM
-                shop
+                shop s
+            JOIN
+                employee e ON s.employee_id = e.employee_id
             WHERE
-                employee_id = (SELECT employee_id
-                               FROM employee
-                               WHERE employee_number = #{employee_number})
+                s.employee_id = (SELECT employee_id
+                                 FROM employee
+                                 WHERE employee_number = #{employee_number})
             AND
-                shop_id = #{shop_id}
+                s.shop_id = #{shop_id}
     </select>
 
 </mapper>
