@@ -10,6 +10,7 @@ public class ProposalDTO {
     private String shop_name;
     private String title;
     private String content;
+    private String manager;
     private LocalDateTime date;
     private ProposalCategory category;
     private String completed;
