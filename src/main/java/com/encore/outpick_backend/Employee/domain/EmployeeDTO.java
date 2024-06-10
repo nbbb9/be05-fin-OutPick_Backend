@@ -19,6 +19,7 @@ public class EmployeeDTO {
     @JsonIgnore
     private String password;
 
+    private List<Integer> shop;
     private List<Integer> add_shop;
     private List<Integer> delete_shop;
 

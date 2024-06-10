@@ -51,7 +51,8 @@ public class LoginController {
         String result;
 
         if(map.containsKey("성공")){
-            result = getToken(map.get("성공").getEmployee_number(), loginInfo.getRole(), map.get("성공").getName());
+            map.get("성공").setRole(loginInfo.getRole());
+            result = getToken(map.get("성공"));
         }else{
             result = "로그인 실패하셨습니다!";
         }
@@ -66,15 +67,16 @@ public class LoginController {
     }   // getInfo end
     
 
-    public String getToken(int employee_number, String role, String name){
+    public String getToken(LoginDTO login_info){
 
         log.info("secretkey : " + Encoders.BASE64.encode(secretKey.getEncoded()));
 
         String token = Jwts.builder()
-                            .claim("employee_number", employee_number)
-                            .claim("role", role)
-                            .claim("name", name)
-                            .expiration(new Date(System.currentTimeMillis() + 1000*60*12))  // 제한기간 설정
+                            .claim("employee_number", login_info.getEmployee_number())
+                            .claim("role", login_info.getRole())
+                            .claim("name", login_info.getName())
+                            .claim("id", login_info.getId())
+                            .expiration(new Date(System.currentTimeMillis() + 1000*60*60))  // 제한기간 설정
                             .issuedAt(new Date())   // token 발급날짜
                             .signWith(secretKey)
                             .compact();
@@ -93,7 +95,7 @@ public class LoginController {
         int employee_number = claims.get("employee_number", Integer.class);
         String role = claims.get("role", String.class);
         String name = claims.get("name", String.class);
-                        
+        int id = claims.get("id", Integer.class);                
 
         log.info("getInfo : " + employee_number );
         log.info("getInfo : " + role);
@@ -104,7 +106,7 @@ public class LoginController {
         result.setEmployee_number(employee_number);
         result.setRole(role);
         result.setName(name);
-
+        result.setId(id);
         return result;
     }   // getToken end
     
