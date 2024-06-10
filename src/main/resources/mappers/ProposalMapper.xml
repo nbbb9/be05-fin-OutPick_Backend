@@ -15,11 +15,13 @@
                p.category,
                p.completed,
                p.solution,
-               e.name as employee_name
+               e.name as employee_name,
+               s.manager
         FROM proposal p
                  JOIN shop s ON p.shop_id = s.shop_id
                  JOIN employee e ON s.employee_id = e.employee_id
-        WHERE e.employee_number = #{employee_number};
+        WHERE e.employee_number = #{employee_number}
+        ORDER BY p.completed ASC, p.date DESC;
     </select>
 
     <select id="read_proposal"
