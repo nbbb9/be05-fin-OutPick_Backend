@@ -65,4 +65,11 @@ public class StockRequestController {
         }
     }
 
+    // 하나의 매장에 대한 재고요청서들의 리스트를 조회할 수 있다.
+    @Operation(summary = "하나의 매장에 대한 재고요청서 리스트 조회", description = "로그인 필요 없음.")
+    @GetMapping("/list/{shopId}")
+    public ResponseEntity<List<StockRequestDTO>> read_sr_list(@PathVariable("shopId") int id){
+        return new ResponseEntity<List<StockRequestDTO>>(stockRequestService.read_shop_sr_list(id), HttpStatus.OK);
+    }
+
 }

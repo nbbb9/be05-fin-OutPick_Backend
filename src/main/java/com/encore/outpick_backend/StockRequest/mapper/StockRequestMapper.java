@@ -15,4 +15,7 @@ public interface StockRequestMapper {
 
     public void update_sr(int employee_number, int id);
     public void update_sr_emp(int employee_number, int id);
+
+    public List<StockRequestDTO> read_shop_sr_list(int id);
+
 }
