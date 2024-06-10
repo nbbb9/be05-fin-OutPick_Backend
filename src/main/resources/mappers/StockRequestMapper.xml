@@ -29,6 +29,7 @@
             stock_request_id,
             s.name as shop_name,
             request_date,
+            approval,
             admin_approval
         FROM
             stock_request sr
