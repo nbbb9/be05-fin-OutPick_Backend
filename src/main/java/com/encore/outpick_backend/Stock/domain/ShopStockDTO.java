@@ -19,4 +19,5 @@ public class ShopStockDTO {
     private int stock;
     private LocalDateTime stock_date;
     private int discount;
+    private int size;
 }
