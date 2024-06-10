@@ -57,4 +57,21 @@
         SET completed = 'y'
         WHERE proposal_id = #{proposal_id};
     </update>
+
+    <select id="read_proposal_byshop"
+            parameterType="int"
+            resultType="com.encore.outpick_backend.Proposal.domain.ProposalDTO">
+        SELECT p.proposal_id,
+               p.shop_id,
+               p.title,
+               p.content,
+               p.date,
+               p.category,
+               p.completed
+        FROM proposal p
+                 JOIN shop s ON p.shop_id = s.shop_id
+                 JOIN employee e ON s.employee_id = e.employee_id
+        WHERE s.shop_id = #{shop_id}
+        ORDER BY p.date DESC;
+    </select>
 </mapper>
