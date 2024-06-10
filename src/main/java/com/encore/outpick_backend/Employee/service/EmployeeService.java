@@ -38,8 +38,12 @@ public class EmployeeService {
         log.info("debug : service - update_employee");
 
         employeeMapper.update_employee_default(employee_info);
-        employeeMapper.update_employee_add(employee_info.getEmployee_id(), employee_info.getAdd_shop());
-        employeeMapper.update_employee_delete(employee_info.getEmployee_id(), employee_info.getDelete_shop());
+        if(employee_info.getAdd_shop().size() > 0){
+            employeeMapper.update_employee_add(employee_info.getEmployee_id(), employee_info.getAdd_shop());
+        }
+        if(employee_info.getDelete_shop().size() > 0){
+            employeeMapper.update_employee_delete(employee_info.getEmployee_id(), employee_info.getDelete_shop());
+        }  
     }
 
     //로그인한 사원의 정보를 인포윈도우에 출력
