@@ -13,6 +13,6 @@ public interface StockRequestMapper {
     public StockRequestDTO read_sr_detail(int id);
     public StockRequestDTO read_sr_empDetail(int employee_number, int id);
 
-    public void update_sr(int id);
+    public void update_sr(int employee_number, int id);
     public void update_sr_emp(int employee_number, int id);
 }

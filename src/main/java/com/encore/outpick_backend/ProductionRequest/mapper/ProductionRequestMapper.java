@@ -15,7 +15,7 @@ public interface ProductionRequestMapper {
 
     public ProductionRequestDTO read_pr_empDetail(int employee_number, int id);
 
-    public void confirm_pr(int id);
+    public void confirm_pr(int employee_number, int id);
 
     public void update_pr(ProductionUpdateDTO productionUpdateDTO);
 

@@ -60,7 +60,7 @@ public class StockRequestController {
             stockRequestService.update_sr_emp(user.getEmployee_number(), id);
             return new ResponseEntity<>(HttpStatus.OK);
         } else { // 관리자
-            stockRequestService.update_sr(id);
+            stockRequestService.update_sr(user.getEmployee_number(), id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
