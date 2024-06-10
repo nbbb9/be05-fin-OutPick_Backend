@@ -19,6 +19,7 @@
             p.name AS product_name,
             p.gender,
             c.name AS category_name,
+            p.size,
             p.color,
             p.season,
             p.fit,
