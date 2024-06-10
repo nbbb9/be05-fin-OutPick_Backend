@@ -11,7 +11,8 @@
             stock_request_id,
             s.name as shop_name,
             request_date,
-            admin_approval
+            admin_approval,
+            approval
         FROM
             stock_request sr
         JOIN
