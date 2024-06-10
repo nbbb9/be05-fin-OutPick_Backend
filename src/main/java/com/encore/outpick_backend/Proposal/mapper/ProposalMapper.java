@@ -20,4 +20,7 @@ public interface ProposalMapper {
 
     // 건의문 해결완료 체크
     void put_proposal_completed(ProposalDTO proposalDTO);
+
+    // 매장별 건의문 리스트
+    List<ProposalDTO> read_proposal_byshop(int shop_id);
 }

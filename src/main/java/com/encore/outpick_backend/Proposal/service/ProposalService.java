@@ -38,4 +38,9 @@ public class ProposalService {
         log.info("debug >> ProposalService: put_proposal_completed");
         proposalMapper.put_proposal_completed(proposalDTO);
     }
+
+    public List<ProposalDTO> read_proposal_byshop(int shop_id){
+        log.info("debug >> ProposalService: read_proposal_byshop");
+        return proposalMapper.read_proposal_byshop(shop_id);
+    }
 }

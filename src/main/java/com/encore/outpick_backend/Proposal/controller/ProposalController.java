@@ -42,7 +42,7 @@ public class ProposalController {
     // 건의문 상세보기 반환
     @Operation(summary = "건의문 상세보기" , description = "건의문 상세보기를 불러오는 API")
     @GetMapping("/{proposal_id}")
-    public ResponseEntity<?> read_proposal(@PathVariable int proposal_id, @RequestHeader("login_token") String token) {
+    public ResponseEntity<?> read_proposal(@PathVariable("proposal_id") int proposal_id, @RequestHeader("login_token") String token) {
         LoginDTO user = loginController.getTokenInfo(token);
         ProposalDTO proposalDTO = proposalService.read_proposal(proposal_id, user.getEmployee_number());
         if (proposalDTO == null) {
@@ -83,4 +83,12 @@ public class ProposalController {
         return ResponseEntity.ok().build();
     }
 
+    // 매장별 건의문 리스트
+    @Operation(summary = "매장별 건의문 리스트" , description = "매장별 건의문 리스트를 불러오는 api")
+    @GetMapping("/shop/{shop_id}")
+    public ResponseEntity<List<ProposalDTO>> read_proposal_byshop (@PathVariable("shop_id") int shop_id){
+        List<ProposalDTO> proposals = proposalService.read_proposal_byshop(shop_id);
+        log.info("debug >> ProposalController: read_proposal_byshop");
+        return ResponseEntity.ok(proposals);
+    }
 }
