@@ -1,6 +1,6 @@
 package com.encore.outpick_backend.sse;
 
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -10,10 +10,6 @@ import java.io.IOException;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 
 
 @Slf4j
@@ -28,11 +24,11 @@ public class SseController {
     }
 
     @GetMapping(value = "/connect", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public ResponseEntity<SseEmitter> connect() {
+    public ResponseEntity<SseEmitter> connect(@RequestParam int shop_id) {
         SseEmitter emitter = new SseEmitter(3600 * 1000L);
 
-        sseEmitters.add(emitter);   // add 메서드 실행
-
+        sseEmitters.add(shop_id,emitter);   // add 메서드 실행
+        log.info("shop_id : {} " , shop_id);
         try {
             emitter.send(SseEmitter.event()
                     .name("connect")
