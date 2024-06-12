@@ -4,9 +4,18 @@
 <mapper namespace="com.encore.outpick_backend.Stock.mapper.StockMapper">
     <select id="read_stock"
             resultType="com.encore.outpick_backend.Stock.domain.StockDTO">
-        SELECT *
+        SELECT
+            s.stock_id,
+            w.name AS warehouse_name,
+            p.name AS product_name,
+            p.size,
+            p.color,
+            s.stock_date,
+            s.stock
         FROM
-            stock
+            stock s
+        JOIN product p ON p.product_id = s.product_id
+        JOIN warehouse w ON s.warehouse_id = w.warehouse_id 
     </select>
 
     <select id="read_stock_shop"

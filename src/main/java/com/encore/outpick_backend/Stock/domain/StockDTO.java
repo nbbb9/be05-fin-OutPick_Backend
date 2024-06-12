@@ -10,4 +10,10 @@ public class StockDTO {
     private Integer product_id;
     private Integer stock;
     private LocalDateTime stock_date;
+    private String warehouse_name;
+    private String product_name;
+    private Integer size;
+    private String color;
+    private Integer discount;
+
 }
