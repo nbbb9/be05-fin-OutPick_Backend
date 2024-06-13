@@ -3,29 +3,26 @@
 
 <mapper namespace="com.encore.outpick_backend.Login.mapper.LoginMapper">
 
-    <select id="login_employee"
+    <select id="login"
         parameterType="com.encore.outpick_backend.Login.domain.LoginDTO"
         resultType="com.encore.outpick_backend.Login.domain.LoginDTO">
 
         SELECT 
-            employee_number, password, name, employee_id as id
+            employee_number, password, name, id, authorization
         FROM 
-            employee
+            (
+                SELECT 
+                    employee_number, password, name, employee_id AS id, authorization 
+                FROM 
+                    employee 
+                UNION ALL
+                SELECT 
+                    employee_number, password, name, admin_id AS id, authorization 
+                FROM 
+                    admin
+            ) AS combined_data
         WHERE 
-            employee_number = #{employee_number}
-
-    </select>
-
-    <select id="login_admin"
-        parameterType="com.encore.outpick_backend.Login.domain.LoginDTO"
-        resultType="com.encore.outpick_backend.Login.domain.LoginDTO">
-
-        SELECT 
-            employee_number, password, name, admin_id as id
-        FROM 
-            admin
-        WHERE 
-            employee_number = #{employee_number}
+            employee_number = #{employee_number};    
 
     </select>
 
