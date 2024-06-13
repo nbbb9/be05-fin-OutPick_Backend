@@ -79,6 +79,7 @@
             s.name as shop_name,
             request_date,
             s.manager,
+            approval,
             admin_approval,
             sr.product_id,
             p.name as product_name,
