@@ -16,10 +16,12 @@
             p.color,
             p.season,
             p.fit,
-            p.first_cost
+            p.first_cost,
+            s.stock
         FROM
             product p
         JOIN category c ON (c.category_id = p.category_id)
+        LEFT JOIN stock s ON (p.product_id = s.product_id)
     </select>
 
     <!-- 상품 단일 조회 -->
