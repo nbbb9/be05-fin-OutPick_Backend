@@ -2,6 +2,7 @@ package com.encore.outpick_backend.ProductionRequest.service;
 
 import com.encore.outpick_backend.ProductionRequest.domain.ProductionRequestDTO;
 import com.encore.outpick_backend.ProductionRequest.domain.ProductionUpdateDTO;
+import com.encore.outpick_backend.ProductionRequest.domain.ProductionWriteDTO;
 import com.encore.outpick_backend.ProductionRequest.mapper.ProductionRequestMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -51,4 +52,7 @@ public class ProductionRequestService {
         productionRequestMapper.delete_pr(employee_number, id);
     }
 
+    public void write_pr(ProductionWriteDTO productionWriteDTO){
+        productionRequestMapper.write_pr(productionWriteDTO);
+    }
 }

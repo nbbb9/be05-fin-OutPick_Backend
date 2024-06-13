@@ -125,9 +125,13 @@
             JOIN employee e ON pr.employee_id = e.employee_id
         WHERE
             pr.production_request_id = #{id} AND e.employee_number = #{employee_number}
-
-
-
-
     </delete>
+
+    <!-- 사원만 생산요청서를 작성할 수 있다. -->
+    <insert id="write_pr"
+            parameterType="com.encore.outpick_backend.ProductionRequest.domain.ProductionUpdateDTO">
+        INSERT INTO production_request(product_id, amount, employee_id)
+        VALUES (#{product_id}, #{amount}, #{employee_id})
+    </insert>
+
 </mapper>

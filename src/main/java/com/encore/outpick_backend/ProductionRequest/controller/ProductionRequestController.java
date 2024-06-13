@@ -5,6 +5,7 @@ import com.encore.outpick_backend.Login.controller.LoginController;
 import com.encore.outpick_backend.Login.domain.LoginDTO;
 import com.encore.outpick_backend.ProductionRequest.domain.ProductionRequestDTO;
 import com.encore.outpick_backend.ProductionRequest.domain.ProductionUpdateDTO;
+import com.encore.outpick_backend.ProductionRequest.domain.ProductionWriteDTO;
 import com.encore.outpick_backend.ProductionRequest.service.ProductionRequestService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -99,5 +101,23 @@ public class ProductionRequestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
+
+    // 사원만 생산요청서를 작성할 수 있다.
+    @Operation(summary = "생산요청서 작성", description = "사원만 생산요청서를 작성할 수 있다.")
+    @PutMapping("/write")
+    public ResponseEntity<Void> write_pr(@RequestHeader("login_token") String token, @RequestBody ProductionWriteDTO productionWriteDTO){
+        LoginDTO user = loginController.getTokenInfo(token);
+        productionWriteDTO.setEmployee_id(user.getId());
+
+        if (user.getRole().equals("사원")) { // 일반 사원
+            // 일반 사원만 작성 가능.
+            productionRequestService.write_pr(productionWriteDTO);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else { // 관리자
+            // 아무일도 일어나지 않는다.
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
 
 }
