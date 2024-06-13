@@ -42,16 +42,14 @@ public class LoginController {
 
         Map<String,LoginDTO> map = loginService.login(loginInfo);
 
-        // map.forEach((key,value) -> {
-        //     log.info("key : " + key);
-        //     log.info("value :" + value);
-        //     log.info("value_empl :" + value.getEmployee_number() );
-        // } );
-
         String result;
 
         if(map.containsKey("성공")){
-            map.get("성공").setRole(loginInfo.getRole());
+            if (map.get("성공").getAuthorization().equals("A")) {
+                map.get("성공").setRole("관리자");
+            }else{
+                map.get("성공").setRole("사원");
+            }
             result = getToken(map.get("성공"));
         }else{
             result = "로그인 실패하셨습니다!";
