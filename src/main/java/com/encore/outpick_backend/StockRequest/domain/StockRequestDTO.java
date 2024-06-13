@@ -22,5 +22,6 @@ public class StockRequestDTO {
     private int first_cost; // 상품 원가
     private String employee_name; // 담당자 이름
     private String admin_name; // 관리자(승인자) 이름
+    private String manager; // 매장 담당자 이름
 
 }
