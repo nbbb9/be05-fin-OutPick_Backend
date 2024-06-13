@@ -18,10 +18,13 @@
             p.fit,
             p.first_cost,
             s.stock
+            ss.quantity
         FROM
             product p
         JOIN category c ON (c.category_id = p.category_id)
         LEFT JOIN stock s ON (p.product_id = s.product_id)
+        JOIN shop_sales ss ON (ss.product_id = p.product_id)
+        GROUP BY ss.product_id
     </select>
 
     <!-- 상품 단일 조회 -->
