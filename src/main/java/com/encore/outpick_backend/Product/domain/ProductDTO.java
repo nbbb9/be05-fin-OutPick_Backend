@@ -15,4 +15,5 @@ public class ProductDTO {
     private String fit;
     private Integer first_cost;
     private String category;
+    private Integer stock;
 }
