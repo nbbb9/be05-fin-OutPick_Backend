@@ -15,5 +15,5 @@ public class StockDTO {
     private Integer size;
     private String color;
     private Integer discount;
-
+    private Integer quantity;
 }

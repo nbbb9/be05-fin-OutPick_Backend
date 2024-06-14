@@ -104,13 +104,14 @@ public class ProductionRequestController {
 
     // 사원만 생산요청서를 작성할 수 있다.
     @Operation(summary = "생산요청서 작성", description = "사원만 생산요청서를 작성할 수 있다.")
-    @PutMapping("/write")
+    @PostMapping("/write")
     public ResponseEntity<Void> write_pr(@RequestHeader("login_token") String token, @RequestBody ProductionWriteDTO productionWriteDTO){
         LoginDTO user = loginController.getTokenInfo(token);
         productionWriteDTO.setEmployee_id(user.getId());
 
         if (user.getRole().equals("사원")) { // 일반 사원
             // 일반 사원만 작성 가능.
+            productionWriteDTO.setEmployee_id(user.getId());
             productionRequestService.write_pr(productionWriteDTO);
             return new ResponseEntity<>(HttpStatus.OK);
         } else { // 관리자

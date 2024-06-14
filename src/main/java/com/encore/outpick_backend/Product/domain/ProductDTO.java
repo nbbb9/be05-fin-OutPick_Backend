@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class ProductDTO {
     private Integer product_id;
-    private Integer category_id;
     private String product_name;
     private Integer price;
     private Integer size;

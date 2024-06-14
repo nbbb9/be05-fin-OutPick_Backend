@@ -11,11 +11,14 @@
             p.size,
             p.color,
             s.stock_date,
-            s.stock
+            s.stock,
+            ss.quantity
         FROM
             stock s
         JOIN product p ON p.product_id = s.product_id
         JOIN warehouse w ON s.warehouse_id = w.warehouse_id 
+        JOIN shop_sales ss ON ss.product_id = p.product_id
+        GROUP BY p.product_id
     </select>
 
     <select id="read_stock_shop"

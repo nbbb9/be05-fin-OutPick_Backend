@@ -17,7 +17,7 @@
             p.season,
             p.fit,
             p.first_cost,
-            s.stock
+            s.stock,
             ss.quantity
         FROM
             product p
