@@ -48,6 +48,11 @@ public class StockRequestService {
         stockRequestMapper.update_sr_emp(employee_number, id);
     }
 
+    //재고요청서 반려
+    public void refuse_sr(int employee_number, int id){
+        stockRequestMapper.refuse_sr(employee_number, id);
+    }
+
     // 하나의 매장에 대한 재고요청서들의 리스트를 조회할 수 있다.
     public List<StockRequestDTO> read_shop_sr_list(int id){
         return stockRequestMapper.read_shop_sr_list(id);

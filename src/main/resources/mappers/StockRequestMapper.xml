@@ -118,6 +118,19 @@
 
     </update>
 
+
+    <!-- 재고 요청서 반려 -->
+    <update id="refuse_sr"
+            parameterType="int">
+
+        UPDATE stock_request sr
+            JOIN shop s ON sr.shop_id = s.shop_id
+            JOIN employee e ON s.employee_id = e.employee_id
+            SET approval='반려'
+        WHERE stock_request_id = #{id} and e.employee_number = #{employee_number}
+
+    </update>
+
     <!-- 매장별 재고요청서 리스트 조회 -->
     <select id="read_shop_sr_list"
             resultType="com.encore.outpick_backend.StockRequest.domain.StockRequestDTO">

@@ -65,6 +65,18 @@ public class StockRequestController {
         }
     }
 
+    // 재고요청서를 반려한다.
+    @Operation(summary = "재고요청서 반려", description = "사원 : 담당 매장의 재고요청서에 대해서만 반려 가능.")
+    @PutMapping("/refuse/{formId}")
+    public ResponseEntity<Void> refuse_sr(@RequestHeader("login_token") String token, @PathVariable("formId") int id){
+
+        LoginDTO user = loginController.getTokenInfo(token);
+
+        stockRequestService.refuse_sr(user.getEmployee_number(), id);
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }//refuse_sr
+
     // 하나의 매장에 대한 재고요청서들의 리스트를 조회할 수 있다.
     @Operation(summary = "하나의 매장에 대한 재고요청서 리스트 조회", description = "로그인 필요 없음.")
     @GetMapping("/list/{shopId}")
