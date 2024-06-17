@@ -42,7 +42,8 @@
         SET 
             position = #{position},
             contact = #{contact},
-            address = #{address}
+            address = #{address},
+            state = #{state}
         WHERE employee_id = #{employee_id}
 
     </update>
