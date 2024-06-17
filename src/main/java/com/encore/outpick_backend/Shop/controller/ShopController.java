@@ -54,7 +54,12 @@ public class ShopController {
 
         LoginDTO user = lc.getTokenInfo(token);
 
-        return new ResponseEntity<ShopDTO>(shopService.get_shop_detail(user.getEmployee_number(),shopId ), HttpStatus.OK);
+        if(user.getRole().equals("사원")) {
+            return new ResponseEntity<ShopDTO>(shopService.get_shop_detail(user.getEmployee_number(), shopId), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<ShopDTO>(shopService.get_shop_detail_admin(shopId), HttpStatus.OK);
+        }
+
     }//getShopDetail end
 
 }

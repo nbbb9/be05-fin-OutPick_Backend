@@ -14,4 +14,6 @@ public interface StockMapper {
     public List<StockDTO> read_stock();
 
     public List<ShopStockDTO> read_stock_shop(@Param("employee_number") int employee_number, @Param("shop_id") int shop_id);
+
+    public List<ShopStockDTO> read_stock_shop_detail(@Param("shop_id") int shop_id);
 }
