@@ -45,10 +45,10 @@ public class AnalyzeController {
     //특정 매장의 특정 월 특정 상품 / 특정 색깔 / 판매량을 조회할 수 있다.(좌측 하단의 그래프에서 특정 매장을 눌렀을 때)
     @Operation(summary = "특정매장 월 특정 상품 OR 카테고리별 판매량 분석(1차분류)",description = "특정 매장의 특정 년도, 월을 선택하고 1차분류(상품 or 카테고리)별로 분석할 수 있다.")
     @PostMapping("/sales_analyze/fc")
-    public ResponseEntity<List<AnalyzeFCResponseDTO>> read_fc_list(@RequestBody AnalyzeFCRequestDTO analyzeFCRequestDTO){
+    public ResponseEntity<AnalyzeFCResponseDTO> read_fc_list(@RequestBody AnalyzeFCRequestDTO analyzeFCRequestDTO){
         log.info("read_fc_list Controller");
 
-        return new ResponseEntity<>(analyzeShopSalesService.read_fc_list(analyzeFCRequestDTO), HttpStatus.OK);
+        return new ResponseEntity<AnalyzeFCResponseDTO>(analyzeShopSalesService.read_fc_list(analyzeFCRequestDTO), HttpStatus.OK);
     }//read_fc_list
 
     //특정 매장의 특정 월 특정 상품 / 특정 색깔 / 판매량을 조회할 수 있다.(좌측 하단의 그래프에서 특정 매장을 눌렀을 때)
