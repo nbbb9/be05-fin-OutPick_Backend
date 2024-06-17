@@ -19,7 +19,7 @@
     <!--특정 년도, 월, 매장, 1차분류-->
     <select id="read_fc_list"
             parameterType="com.encore.outpick_backend.Analyze.domain.AnalyzeFCRequestDTO"
-            resultType="com.encore.outpick_backend.Analyze.domain.AnalyzeFCResponseDTO">
+            resultType="com.encore.outpick_backend.Analyze.domain.AnalyzeFCResultDTO">
 
         <choose>
         <when test="first_classification == '상품'">
