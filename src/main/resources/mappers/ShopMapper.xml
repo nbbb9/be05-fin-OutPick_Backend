@@ -53,4 +53,25 @@
                 s.shop_id = #{shop_id}
     </select>
 
+    <!--관리자는 모든 매장 정보를 확인-->
+    <select id="get_shop_detail_admin"
+            parameterType="map"
+            resultType="com.encore.outpick_backend.Shop.domain.ShopDTO">
+
+        SELECT
+            e.name AS employee_name,
+            s.address AS address,
+            s.contact AS contact,
+            s.content AS content,
+            s.manager AS manager,
+            s.email AS email,
+            s.name AS name
+        FROM
+            shop s
+        JOIN
+            employee e ON s.employee_id = e.employee_id
+        WHERE
+            s.shop_id = #{shop_id}
+    </select>
+
 </mapper>

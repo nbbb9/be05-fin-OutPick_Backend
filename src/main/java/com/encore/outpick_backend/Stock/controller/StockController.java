@@ -40,4 +40,11 @@ public class StockController {
         return new ResponseEntity<List<ShopStockDTO>>(stockService.read_stock_shop(user.getEmployee_number(), shop_id), HttpStatus.OK);
     }
 
+    @GetMapping("/shopstock/detail/{shopid}")
+    @Operation(summary = "매장별 재고 조회_매장 상세" , description = "매장 상세화면에서의 매장 재고목록을 불러오는 api")
+    public ResponseEntity<List<ShopStockDTO>> read_stock_shop_detail(@PathVariable("shopid") int shop_id){
+        log.info(">>>> debug Stock Controller GET: /shopstock", shop_id);
+        return new ResponseEntity<List<ShopStockDTO>>(stockService.read_stock_shop_detail(shop_id), HttpStatus.OK);
+    }
+
 }

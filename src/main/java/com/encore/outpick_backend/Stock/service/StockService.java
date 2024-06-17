@@ -27,4 +27,9 @@ public class StockService {
         log.info(">>> debug Stock Service read_stock_shop");
         return stockMapper.read_stock_shop(employee_number, shop_id);
     }
+
+    public List<ShopStockDTO> read_stock_shop_detail(int shop_id){
+        log.info(">>> debug Stock Service read_stock_shop");
+        return stockMapper.read_stock_shop_detail(shop_id);
+    }
 }
