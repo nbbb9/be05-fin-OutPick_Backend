@@ -4,11 +4,13 @@ import com.encore.outpick_backend.Login.domain.LoginDTO;
 import com.encore.outpick_backend.Login.controller.LoginController;
 import com.encore.outpick_backend.Proposal.domain.ProposalDTO;
 import com.encore.outpick_backend.Proposal.service.ProposalService;
+import com.encore.outpick_backend.StockRequest.domain.StockRequestDTO;
 import com.encore.outpick_backend.sse.SseController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,9 +36,16 @@ public class ProposalController {
     @GetMapping("/list")
     public ResponseEntity<List<ProposalDTO>> get_proposal(@RequestHeader("login_token") String token) {
         LoginDTO user = loginController.getTokenInfo(token);
-        List<ProposalDTO> proposals = proposalService.get_proposal(user.getEmployee_number());
-        log.info("debug >> ProposalController: get_proposal");
-        return ResponseEntity.ok(proposals);
+        if(user.getRole().equals("사원")){
+            List<ProposalDTO> proposals = proposalService.get_proposal(user.getEmployee_number());
+            log.info("debug >> ProposalController: get_proposal");
+            return ResponseEntity.ok(proposals);
+        }else{
+            List<ProposalDTO> proposals = proposalService.get_proposal_admin();
+            log.info("debug >> ProposalController: get_proposal");
+            return ResponseEntity.ok(proposals);
+        }
+
     }
 
     // 건의문 상세보기 반환

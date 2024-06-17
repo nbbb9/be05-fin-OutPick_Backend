@@ -21,6 +21,11 @@ public class ProposalService {
         return proposalMapper.get_proposal(employee_number);
     }
 
+    public List<ProposalDTO> get_proposal_admin(){
+        log.info("debug >> ProposalService: get_proposal");
+        return proposalMapper.get_proposal_admin();
+    }
+
     // 건의문 상세보기 반환
     public ProposalDTO read_proposal(int proposal_id, int employee_number) {
         log.info("debug >> ProposalService: read_proposal");
