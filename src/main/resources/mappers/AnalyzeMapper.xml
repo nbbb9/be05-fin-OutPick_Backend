@@ -5,7 +5,7 @@
 
     <select id="get_analyze_entire"
             parameterType="int"
-            resultType="com.encore.outpick_backend.Analyze.domain.AnalyzeEntireVO">
+            resultType="com.encore.outpick_backend.Analyze.domain.AnalyzeEntireResponseDTO">
         SELECT MONTH(ss.date) as month,
             SUM(ss.quantity) as entireQuantity
         FROM shop_sales ss
