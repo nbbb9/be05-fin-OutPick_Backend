@@ -27,7 +27,7 @@ public class AnalyzeController {
     // 회사의 월별 판매량 분석
     @Operation(summary = "회사의 월별 총 판매량" , description = "년도를 선택하여 회사의 월별 매출을 분석할 수 있다.")
     @GetMapping("/sales/{year}")
-    public List<AnalyzeEntireVO> get_analyze_entire(@PathVariable("year") int year){
+    public AnalyzeEntireVO get_analyze_entire(@PathVariable("year") int year){
         log.info("get_analyze_entire Controller");
 
         return analyzeService.get_analyze_entire(year);
