@@ -13,8 +13,8 @@
             JOIN product p ON ss.product_id = p.product_id
             LEFT JOIN shop_stock st ON ss.product_id = st.product_id AND ss.shop_id = st.shop_id
         WHERE DATE LIKE CONCAT(#{year}, '-%-%')
-        GROUP BY MONTH(DATE), ss.product_id
-        ORDER BY MONTH(DATE), ss.product_id
+        GROUP BY MONTH(DATE)
+        ORDER BY MONTH(DATE)
     </select>
 
     <!--특정 년도, 월, 매장, 1차분류-->
