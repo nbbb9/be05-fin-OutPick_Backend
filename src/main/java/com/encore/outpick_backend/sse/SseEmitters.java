@@ -20,7 +20,7 @@ public class SseEmitters {
     public SseEmitter add(int shop_id,SseEmitter emitter){
         this.emitters.put(shop_id, emitter);
         log.info("new emitter added : {}", emitter);
-        log.info("emitter_2 map size : {}", emitters.size());
+        log.info("emitters map size : {}", emitters.size());
         if(!emitters.containsKey(shop_id)){
             emitters.remove(shop_id);
             emitters.put(shop_id, emitter);
