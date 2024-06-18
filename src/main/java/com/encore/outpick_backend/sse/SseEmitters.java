@@ -66,7 +66,7 @@ public class SseEmitters {
         }
 
         log.info("emitter 이벤트 보내기 끝");
-    }//proposal_solution end\
+    }//proposal_solution end
 
     //할인율 알림
     public void product_discount(int shop_id, int product_id){
@@ -86,5 +86,24 @@ public class SseEmitters {
 
         log.info("할인율 emitter 이벤트 보내기 끝");
     }//product_discount end
+
+    //재고요청서 승인 알림
+    public void stock_request_approval(int shop_id, int stock_request_id){
+        StockRequestApprovalSSEDTO dto = new StockRequestApprovalSSEDTO();
+        dto.setShop_id(shop_id);
+        dto.setStock_request_id(stock_request_id);
+
+        SseEmitter sse = emitters.get(shop_id);
+        try {
+            sse.send(SseEmitter.event()
+                    .name("stock_request_approval")
+                    .data(dto));
+            log.info("재고요청서 승인 emitter 이벤트 보내는 중");
+        }catch (IOException e){
+            log.error("error");
+        }
+
+        log.info("재고요청서 승인 emitter 이벤트 보내기 끝");
+    }//stock_request_approval end
 
 }

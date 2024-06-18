@@ -4,14 +4,17 @@ import com.encore.outpick_backend.Login.controller.LoginController;
 import com.encore.outpick_backend.Login.domain.LoginDTO;
 import com.encore.outpick_backend.StockRequest.domain.StockRequestDTO;
 import com.encore.outpick_backend.StockRequest.service.StockRequestService;
+import com.encore.outpick_backend.sse.SseController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -22,6 +25,9 @@ public class StockRequestController {
 
     private final StockRequestService stockRequestService;
     private final LoginController loginController;
+
+    @Autowired
+    private SseController sseController;
 
     @Operation(summary = "재고요청서 전체 조회", description = "관리자 : 모든 재고요청서 리스트 전체 조회 / 사원 : 담당 매장의 재고요청서들 조회")
     @GetMapping("/list")
@@ -41,7 +47,6 @@ public class StockRequestController {
     public ResponseEntity<StockRequestDTO> read_sr_detail(@RequestHeader("login_token") String token, @PathVariable("formId") int id){
 
         LoginDTO user = loginController.getTokenInfo(token);
-
         if(user.getRole().equals("사원")){ // 일반 사원
             return new ResponseEntity<StockRequestDTO>(stockRequestService.read_sr_empDetail(user.getEmployee_number(), id), HttpStatus.OK);
         }else { // 관리자
@@ -52,11 +57,14 @@ public class StockRequestController {
     // 재고요청서를 승인한다.
     @Operation(summary = "재고요청서 승인", description = "관리자 : 모든 재고요청서 승인 가능. / 사원 : 담당 매장의 재고요청서에 대해서만 승인 가능.")
     @PutMapping("/confirm/{formId}")
-    public ResponseEntity<Void> update_sr(@RequestHeader("login_token") String token, @PathVariable("formId") int id){
+    public ResponseEntity<Void> update_sr(@RequestHeader("login_token") String token, @PathVariable("formId") int id, @RequestBody StockRequestDTO stockRequestDTO){
 
         LoginDTO user = loginController.getTokenInfo(token);
 
+        int shop_id = stockRequestDTO.getShop_id();
+
         if (user.getRole().equals("사원")) { // 일반 사원
+            sseController.stock_request_approval(shop_id, id);
             stockRequestService.update_sr_emp(user.getEmployee_number(), id);
             return new ResponseEntity<>(HttpStatus.OK);
         } else { // 관리자
@@ -68,9 +76,11 @@ public class StockRequestController {
     // 재고요청서를 반려한다.
     @Operation(summary = "재고요청서 반려", description = "사원 : 담당 매장의 재고요청서에 대해서만 반려 가능.")
     @PutMapping("/refuse/{formId}")
-    public ResponseEntity<Void> refuse_sr(@RequestHeader("login_token") String token, @PathVariable("formId") int id){
+    public ResponseEntity<Void> refuse_sr(@RequestHeader("login_token") String token, @PathVariable("formId") int id, @RequestBody StockRequestDTO stockRequestDTO){
 
         LoginDTO user = loginController.getTokenInfo(token);
+        int shop_id = stockRequestDTO.getShop_id();
+        log.info("반려.................................:" + shop_id);
 
         stockRequestService.refuse_sr(user.getEmployee_number(), id);
         return new ResponseEntity<>(HttpStatus.OK);

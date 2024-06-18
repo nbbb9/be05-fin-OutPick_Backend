@@ -48,6 +48,12 @@ public class SseController {
         log.info("product_discount Start");
         sseEmitters.product_discount(shop_id, product_id);
         return ResponseEntity.ok().build();
-    }//product_discount
+    }//product_discount end
+
+    public ResponseEntity<String> stock_request_approval(int shop_id, int stock_request_id){
+        log.info("stock_request_approval Start");
+        sseEmitters.stock_request_approval(shop_id, stock_request_id);
+        return ResponseEntity.ok().build();
+    }//stock_request_approval end
 
 }
