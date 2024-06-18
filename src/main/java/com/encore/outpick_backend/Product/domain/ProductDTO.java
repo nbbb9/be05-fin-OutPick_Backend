@@ -16,4 +16,5 @@ public class ProductDTO {
     private String category;
     private Integer stock;
     private Integer quantity;
+    private Integer shop_id;
 }

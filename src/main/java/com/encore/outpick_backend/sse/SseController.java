@@ -24,8 +24,9 @@ public class SseController {
     public ResponseEntity<SseEmitter> connect(@RequestParam int shop_id) {
         SseEmitter emitter = new SseEmitter(3600 * 1000L);
 
-        sseEmitters.add(shop_id,emitter);   // add 메서드 실행
+        sseEmitters.add(shop_id,emitter);// add 메서드 실행
         log.info("shop_id : {} " , shop_id);
+
         try {
             emitter.send(SseEmitter.event()
                     .name("connect")
@@ -41,6 +42,12 @@ public class SseController {
         log.info("proposal_solution Start");
         sseEmitters.proposal_solution(shop_id, proposal_id);
         return ResponseEntity.ok().build();
-    }
+    }//proposal_solution end
+
+    public ResponseEntity<String> product_discount(int shop_id, int product_id){
+        log.info("product_discount Start");
+        sseEmitters.product_discount(shop_id, product_id);
+        return ResponseEntity.ok().build();
+    }//product_discount
 
 }
