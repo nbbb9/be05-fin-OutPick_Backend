@@ -10,12 +10,10 @@ import java.util.List;
 @Data
 public class AnalyzeFCResponseDTO {
 
-    private List<Integer> sales_quantity;//판매량
-    private List<String> first_classification;//1차 분류
+    private String season;
+    private String fit;
+    private String category;
+    private String color;
+    private Long quantity; 
 
-
-    public AnalyzeFCResponseDTO(){
-        this.sales_quantity = new ArrayList<>();
-        this.first_classification = new ArrayList<>();
-    }
 }

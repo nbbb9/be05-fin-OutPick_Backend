@@ -11,6 +11,4 @@ public interface AnalyzeShopSalesMapper {
     public List<AnalyzeShopSalesDTO> read_list(int year, int month);
 
     public List<AnalyzeFCResultDTO> read_fc_list(AnalyzeFCRequestDTO analyzeFCRequestDTO);
-
-    public List<AnalyzeSCResponseDTO> read_sc_list(AnalyzeSCRequestDTO analyzeSCRequestDTO);
 }

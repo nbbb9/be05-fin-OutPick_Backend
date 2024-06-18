@@ -3,17 +3,130 @@
 
 <mapper namespace="com.encore.outpick_backend.Analyze.mapper.AnalyzeMapper">
 
+    <!-- 전체 판매량 & 금액 -->
     <select id="get_analyze_entire"
             parameterType="int"
             resultType="com.encore.outpick_backend.Analyze.domain.AnalyzeEntireResponseDTO">
-        SELECT MONTH(ss.date) as month,
-            SUM(ss.quantity) as entireQuantity
+        SELECT ss.product_id,MONTH(DATE) AS month, SUM(quantity) AS entireQuantity,
+            ROUND((SUM(ss.quantity)*(p.consumer_price-p.first_cost)*((100 - ifnull(st.discount,0)) * 1/100 )),0) AS wholeMoney  
         FROM shop_sales ss
-            JOIN shop s ON s.shop_id=ss.shop_id
-            JOIN product p ON p.product_id=ss.product_id
-        WHERE YEAR(ss.date)=#{year}
-        GROUP BY MONTH(ss.date)
-        ORDER BY MONTH(ss.date);
+            JOIN product p ON ss.product_id = p.product_id
+            LEFT JOIN shop_stock st ON ss.product_id = st.product_id AND ss.shop_id = st.shop_id
+        WHERE DATE LIKE CONCAT(#{year}, '-%-%')
+        GROUP BY MONTH(DATE), ss.product_id
+        ORDER BY MONTH(DATE), ss.product_id
+    </select>
+
+    <!--특정 년도, 월, 매장, 1차분류-->
+    <select id="read_fc_list"
+        parameterType="com.encore.outpick_backend.Analyze.domain.AnalyzeFCRequestDTO"
+        resultType="com.encore.outpick_backend.Analyze.domain.AnalyzeFCResponseDTO">
+
+        SELECT season, 
+            <choose>
+                <when test="first_classification == '카테고리'">
+                    category,
+                </when>
+                <when test="first_classification == '색상'">
+                    color,
+                </when>
+                <when test="first_classification == '맵시'">
+                    fit,
+                </when>
+            </choose> 
+            SUM(quantity) AS quantity
+        FROM (
+            SELECT 
+                CASE 
+                    WHEN MONTH(ss.date) IN (3, 4, 5) THEN 'Spring'
+                    WHEN MONTH(ss.date) IN (6, 7, 8) THEN 'Summer'
+                    WHEN MONTH(ss.date) IN (9, 10, 11) THEN 'Fall'
+                    WHEN MONTH(ss.date) IN (12, 1, 2) THEN 'Winter'
+                END AS season,
+                <choose>
+                    <when test="first_classification == '카테고리'">
+                        c.name AS category
+                    </when>
+                    <when test="first_classification == '색상'">
+                        p.color AS color
+                    </when>
+                    <when test="first_classification == '맵시'">
+                        p.fit AS fit
+                    </when>
+                </choose>,
+                SUM(ss.quantity) AS quantity
+            FROM product p
+            JOIN shop_sales ss ON p.product_id = ss.product_id
+            JOIN category c ON p.category_id = c.category_id
+            WHERE YEAR(ss.date) = #{year} 
+            GROUP BY 
+                <choose>
+                    <when test="first_classification == '카테고리'">
+                        c.name, MONTH(ss.date)
+                    </when>
+                    <when test="first_classification == '색상'">
+                        p.color, MONTH(ss.date)
+                    </when>
+                    <when test="first_classification == '맵시'">
+                        p.fit, MONTH(ss.date)
+                    </when>
+                </choose>
+        ) t
+        GROUP BY season, 
+            <choose>
+                <when test="first_classification == '카테고리'">
+                    category
+                </when>
+                <when test="first_classification == '색상'">
+                    color
+                </when>
+                <when test="first_classification == '맵시'">
+                    fit
+                </when>
+            </choose>
+    </select>
+
+    <!-- 핏별 카테고리 -->
+    <select id="read_sc_list"
+        parameterType="com.encore.outpick_backend.Analyze.domain.AnalyzeSCRequestDTO"
+        resultType="com.encore.outpick_backend.Analyze.domain.AnalyzeSCResponseDTO">
+        SELECT	p.fit AS fit,
+            c.category_id AS category_id,
+            c.name AS category,
+            SUM(ss.quantity) AS quantity
+        FROM		
+            product p
+        JOIN		
+            shop_sales ss ON p.product_id = ss.product_id
+        JOIN		
+            category c ON p.category_id = c.category_id
+        WHERE		
+            YEAR(ss.date) = #{year}
+        GROUP BY
+            p.fit, c.name
+        ORDER BY
+            p.fit, c.category_id;
+
+    </select>
+    
+    <select id="read_price_list"
+        parameterType="com.encore.outpick_backend.Analyze.domain.AnalyzePriceRequestDTO"
+        resultType="com.encore.outpick_backend.Analyze.domain.AnalyzePriceResponseDTO">
+
+        SELECT 
+            p.product_id AS product_id,
+            ss.quantity AS quantity,
+            p.consumer_price AS price,
+            ss.shop_id
+        FROM 
+            product p
+        JOIN		
+            shop_sales ss ON p.product_id = ss.product_id
+        WHERE		
+            YEAR(ss.date) = #{year}
+        GROUP BY	
+            ss.shop_id, p.product_id;
+
     </select>
 
 
