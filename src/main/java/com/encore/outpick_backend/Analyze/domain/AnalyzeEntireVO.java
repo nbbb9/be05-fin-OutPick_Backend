@@ -8,10 +8,12 @@ import java.util.List;
 @Data
 public class AnalyzeEntireVO {
     private List<Integer> month;
+    private List<Integer> wholeMoney;
     private List<Integer> entireQuantity;
 
     public AnalyzeEntireVO(){
         this.month = new ArrayList<>();
+        this.wholeMoney = new ArrayList<>();
         this.entireQuantity = new ArrayList<>();
     }
 }

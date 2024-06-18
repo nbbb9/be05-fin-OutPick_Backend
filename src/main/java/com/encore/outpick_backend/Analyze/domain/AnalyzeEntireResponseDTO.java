@@ -6,4 +6,5 @@ import lombok.Data;
 public class AnalyzeEntireResponseDTO {
     private int month;
     private int entireQuantity;
+    private int wholeMoney;
 }
