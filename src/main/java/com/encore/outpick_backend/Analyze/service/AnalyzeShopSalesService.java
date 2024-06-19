@@ -29,6 +29,21 @@ public class AnalyzeShopSalesService {
         }
 
         return result;        
-    }//read_list end
+    }
+
+    public AnalyzeSRResultDTO read_sr_list(AnalyzeSRRequestDTO analyzeSRRequestDTO) {
+
+        List<AnalyzeSRResponseDTO> lists = analyzeShopSalesMapper.read_sr_list(analyzeSRRequestDTO);
+        
+        AnalyzeSRResultDTO result = new AnalyzeSRResultDTO();
+
+        for(AnalyzeSRResponseDTO list : lists){
+            result.getYear_list().add(list.getYear());
+            result.getQuantity_list().add(list.getQuantity());
+        }
+
+        return result;
+
+    }//read_sr_list end
 
 }
