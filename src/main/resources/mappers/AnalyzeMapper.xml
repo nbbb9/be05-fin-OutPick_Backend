@@ -86,26 +86,54 @@
             </choose>
     </select>
 
-    <!-- 핏별 카테고리 -->
+    <!-- 핏별 카테고리, 계절-->
     <select id="read_sc_list"
         parameterType="com.encore.outpick_backend.Analyze.domain.AnalyzeSCRequestDTO"
         resultType="com.encore.outpick_backend.Analyze.domain.AnalyzeSCResponseDTO">
-        SELECT	p.fit AS fit,
-            c.category_id AS category_id,
-            c.name AS category,
-            SUM(ss.quantity) AS quantity
+        SELECT	fit,
+                <choose>
+                    <when test="second_classification == '카테고리'">
+                        category
+                    </when>
+                    <when test="second_classification == '계절'">
+                        season
+                    </when>
+                </choose>,
+                SUM(quantity) AS quantity
         FROM		
-            product p
-        JOIN		
-            shop_sales ss ON p.product_id = ss.product_id
-        JOIN		
-            category c ON p.category_id = c.category_id
-        WHERE		
-            YEAR(ss.date) = #{year}
-        GROUP BY
-            p.fit, c.name
-        ORDER BY
-            p.fit, c.category_id;
+            (SELECT 
+                    CASE 
+                            WHEN MONTH(ss.date) IN (3, 4, 5) THEN 'Spring'
+                            WHEN MONTH(ss.date) IN (6, 7, 8) THEN 'Summer'
+                            WHEN MONTH(ss.date) IN (9, 10, 11) THEN 'Fall'
+                            WHEN MONTH(ss.date) IN (12, 1, 2) THEN 'Winter'
+                        END AS season,	
+                        p.fit AS fit,
+                        c.name AS category,	     
+                        SUM(ss.quantity) AS quantity
+                    FROM product p
+                    JOIN shop_sales ss ON p.product_id = ss.product_id
+                    JOIN category c ON p.category_id = c.category_id
+                    WHERE YEAR(ss.date) = #{year}
+                    GROUP BY 
+                        <choose>
+                            <when test="second_classification == '카테고리'">
+                                p.fit, c.name
+                            </when>
+                            <when test="second_classification == '계절'">
+                                p.fit, MONTH(ss.date)
+                            </when>
+                        </choose> ) t            
+        GROUP BY 
+            <choose>
+                <when test="second_classification == '카테고리'">
+                    fit, category
+                </when>
+                <when test="second_classification == '계절'">
+                    fit, season
+                </when>
+            </choose>
+        
 
     </select>
     
