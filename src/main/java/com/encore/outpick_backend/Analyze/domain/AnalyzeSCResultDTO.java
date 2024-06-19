@@ -7,19 +7,19 @@ import java.util.List;
 
 @Data
 public class AnalyzeSCResultDTO {
-    private List<String> standard_c;
+    private List<String> standard_2c;
     private List<Long> standard_q;
-    private List<String> over_c;
+    private List<String> over_2c;
     private List<Long> over_q;
-    private List<String> slim_c;
+    private List<String> slim_2c;
     private List<Long> slim_q;
 
     public AnalyzeSCResultDTO() {
-        this.standard_c = new ArrayList<>();
+        this.standard_2c = new ArrayList<>();
         this.standard_q = new ArrayList<>();
-        this.over_c = new ArrayList<>();
+        this.over_2c = new ArrayList<>();
         this.over_q = new ArrayList<>();
-        this.slim_c = new ArrayList<>();
+        this.slim_2c = new ArrayList<>();
         this.slim_q = new ArrayList<>();
         
     }

@@ -84,13 +84,13 @@ public class AnalyzeService {
         
         for(AnalyzeSCResponseDTO list : lists) {
             if(list.getFit().equals("기본핏")) {
-                result.getStandard_c().add(list.getCategory());
+                result.getStandard_2c().add(list.getCategory() != null ? list.getCategory() : list.getSeason());
                 result.getStandard_q().add(list.getQuantity());
             } else if(list.getFit().equals("루즈핏")) {
-                result.getOver_c().add(list.getCategory());
+                result.getOver_2c().add(list.getCategory() != null ? list.getCategory() : list.getSeason());
                 result.getOver_q().add(list.getQuantity());
             } else {
-                result.getSlim_c().add(list.getCategory());
+                result.getSlim_2c().add(list.getCategory() != null ? list.getCategory() : list.getSeason());
                 result.getSlim_q().add(list.getQuantity());
             }
         }
