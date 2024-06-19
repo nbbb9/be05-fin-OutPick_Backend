@@ -19,4 +19,17 @@
 
     </select>
 
+    <!-- 매장별 상품별 년 판매량 -->
+    <select id="read_sr_list"
+        parameterType="com.encore.outpick_backend.Analyze.domain.AnalyzeSRRequestDTO"
+        resultType="com.encore.outpick_backend.Analyze.domain.AnalyzeSRResponseDTO">
+
+        SELECT YEAR(DATE) AS year ,p.name AS name, SUM(quantity) AS quantity
+        FROM shop_sales ss
+        JOIN product p ON ss.product_id = p.product_id
+        WHERE ss.shop_id = #{shop_id} AND ss.product_id = #{product_id}
+        GROUP BY YEAR(DATE)
+
+    </select>
+
 </mapper>

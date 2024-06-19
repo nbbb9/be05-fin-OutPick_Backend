@@ -73,6 +73,12 @@ public class AnalyzeController {
         return new ResponseEntity<>(analyzeService.read_price_list(analyzePriceRequestDTO), HttpStatus.OK);
     }
     
+    @PostMapping("/stock_request_analyze")
+    public ResponseEntity<AnalyzeSRResultDTO> read_sr_list(@RequestBody AnalyzeSRRequestDTO analyzeSRRequestDTO ) {
+        //TODO: process POST request
+        
+        return new ResponseEntity<AnalyzeSRResultDTO>(analyzeShopSalesService.read_sr_list(analyzeSRRequestDTO), HttpStatus.OK);
+    }
     
 
 }
