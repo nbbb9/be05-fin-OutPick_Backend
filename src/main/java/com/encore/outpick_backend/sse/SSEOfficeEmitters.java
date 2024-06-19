@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,5 +46,46 @@ public class SSEOfficeEmitters {
         }
         return null; // 값이 없을 경우 null 반환
     }//findKeyByValue end
+
+    //재고 요청서 작성 알림
+    public void add_stock_request(int shop_id, int employee_id){
+
+        ProductRequestSSEDTO dto = new ProductRequestSSEDTO();
+        dto.setShop_id(shop_id);
+        dto.setEmployee_id(employee_id);
+
+        SseEmitter sse = emitters_office.get(employee_id);
+        try {
+            sse.send(SseEmitter.event()
+                    .name("add_stock_request")
+                    .data(dto));
+            log.info("emitter 이벤트 보내는 중");
+        }catch (IOException e){
+            log.error("error");
+        }
+
+        log.info("emitter 이벤트 보내기 끝");
+    }//add_stock_request end
+
+    //재고 요청서 작성 알림
+    public void add_proposal(int shop_id, int employee_id){
+        //DTO 내용 같아서 재탕함
+        ProductRequestSSEDTO dto = new ProductRequestSSEDTO();
+        dto.setShop_id(shop_id);
+        dto.setEmployee_id(employee_id);
+
+        SseEmitter sse = emitters_office.get(employee_id);
+        try {
+            sse.send(SseEmitter.event()
+                    .name("add_proposal")
+                    .data(dto));
+            log.info("emitter 이벤트 보내는 중");
+        }catch (IOException e){
+            log.error("error");
+        }
+
+        log.info("emitter 이벤트 보내기 끝");
+    }//add_stock_request end
+
 
 }

@@ -23,6 +23,11 @@ public class StoreStockRequestService {
         storeStockRequestMapper.create_stockRequest(storeAddStockRequestDTO);
     }//create_stockRequest end
 
+    public int find_employee_id(int shop_id){
+        log.info("작성한 재고요청서의 담당 직원 Service");
+        return storeStockRequestMapper.find_employee_id(shop_id);
+    }//find_employee_id
+
     public List<ProductDTO> read_stockRequest_product(){
         log.info("read_stockRequest_product Service");
         return storeStockRequestMapper.read_stockRequest_product();

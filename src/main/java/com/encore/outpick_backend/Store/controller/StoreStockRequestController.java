@@ -5,6 +5,7 @@ import com.encore.outpick_backend.Store.domain.StoreAddStockRequestDTO;
 import com.encore.outpick_backend.Store.domain.StoreFeedbackDTO;
 import com.encore.outpick_backend.Store.domain.StoreStockRequestDTO;
 import com.encore.outpick_backend.Store.service.StoreStockRequestService;
+import com.encore.outpick_backend.sse.SSEOfficeEmitters;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -23,10 +24,19 @@ public class StoreStockRequestController {
     @Autowired
     private StoreStockRequestService storeStockRequestService;
 
+    @Autowired
+    private SSEOfficeEmitters sseOfficeEmitters;
+
     @Operation(summary = "재고요청서 작성")
     @PostMapping("/add")
     public void create_stockRequest (@RequestBody StoreAddStockRequestDTO storeAddStockRequestDTO){
         log.info("재고요청서 작성 Controller");
+
+        int shopID = storeAddStockRequestDTO.getShop_id();
+
+        int employeeID = storeStockRequestService.find_employee_id(shopID);
+
+        sseOfficeEmitters.add_stock_request(shopID, employeeID);
 
         storeStockRequestService.create_stockRequest(storeAddStockRequestDTO);
     }//create_stockRequest end

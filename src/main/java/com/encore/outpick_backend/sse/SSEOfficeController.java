@@ -40,4 +40,16 @@ public class SSEOfficeController {
         return ResponseEntity.ok(emitter);
     }
 
+    public ResponseEntity<String> add_stock_request(int shop_id, int employee_id){
+        log.info("add_stock_request Start");
+        sseOfficeEmitters.add_stock_request(shop_id, employee_id);
+        return ResponseEntity.ok().build();
+    }//proposal_solution end
+
+    public ResponseEntity<String> add_proposal(int shop_id, int employee_id){
+        log.info("add_proposal Start");
+        sseOfficeEmitters.add_proposal(shop_id, employee_id);
+        return ResponseEntity.ok().build();
+    }//proposal_solution end
+
 }

@@ -14,6 +14,9 @@ public interface StoreStockRequestMapper {
     //재고 요청서 작성
     public void create_stockRequest(StoreAddStockRequestDTO storeAddStockRequestDTO);
 
+    //작성한 재고요청서의 담당 직원 번호 찾기
+    public int find_employee_id(int shop_id);
+
     //재고 요청서 작성 페이지 이동시 상품 정보 불러옴
     public List<ProductDTO> read_stockRequest_product();
 

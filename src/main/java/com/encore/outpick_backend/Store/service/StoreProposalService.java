@@ -21,6 +21,11 @@ public class StoreProposalService {
         storeProposalMapper.create_proposal(storeAddProposalDTO);
     }//create_proposal end
 
+    public int find_employee_id(int shop_id){
+        log.info("작성한 건의사항의 담당 직원 Service");
+        return storeProposalMapper.find_employee_id(shop_id);
+    }//find_employee_id
+
     public List<StoreReadProposalDTO> read_proposals(int shopid){
         log.info("건의사항 리스트 Service");
 

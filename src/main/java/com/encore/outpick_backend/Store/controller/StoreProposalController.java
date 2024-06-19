@@ -3,6 +3,7 @@ package com.encore.outpick_backend.Store.controller;
 import com.encore.outpick_backend.Store.domain.StoreAddProposalDTO;
 import com.encore.outpick_backend.Store.domain.StoreReadProposalDTO;
 import com.encore.outpick_backend.Store.service.StoreProposalService;
+import com.encore.outpick_backend.sse.SSEOfficeEmitters;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
@@ -21,10 +22,19 @@ public class StoreProposalController {
     @Autowired
     private StoreProposalService storeProposalService;
 
+    @Autowired
+    private SSEOfficeEmitters sseOfficeEmitters;
+
     @Operation(summary = "건의사항 작성")
     @PostMapping("/add")
     public void create_proposal (@RequestBody StoreAddProposalDTO storeAddProposalDTO){
         log.info("건의사항 작성 Controller");
+
+        int shopID = storeAddProposalDTO.getShop_id();
+
+        int employeeID = storeProposalService.find_employee_id(shopID);
+
+        sseOfficeEmitters.add_proposal(shopID, employeeID);
 
         storeProposalService.create_proposal(storeAddProposalDTO);
     }//create_proposal end

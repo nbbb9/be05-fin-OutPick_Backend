@@ -12,6 +12,19 @@
 
     </insert>
 
+    <!---->
+    <select id="find_employee_id"
+            resultType="int">
+
+        SELECT
+            employee_id
+        FROM
+            shop
+        WHERE
+            shop_id = #{shop_id}
+
+    </select>
+
     <!--재고요청서 작성 페이지 이동 시 상품 정보 불러옴-->
     <select id="read_stockRequest_product"
             resultType="com.encore.outpick_backend.Product.domain.ProductDTO">
