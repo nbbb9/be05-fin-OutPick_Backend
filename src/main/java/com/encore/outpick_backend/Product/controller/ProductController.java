@@ -47,9 +47,8 @@ public class ProductController {
     @Operation(summary = "상품 할인율 수정" , description = "상품의 할인율을 수정하는 api")
     public void update_product_discount(@RequestBody ProductDTO product, Integer discount) {
         log.info("update_product_discount Controller");
-        log.info("DDDDDDDDDDDDDEEEEEEEEEEEBBBBBBUUUUUUUUGGGGGGG: ", product.getShop_id());
-        productService.update_product_discount(product.getProduct_id(), discount);
         sseController.product_discount(product.getShop_id(), product.getProduct_id());
+        productService.update_product_discount(product.getProduct_id(), discount);
     }//update_product_discount end
 
 }
