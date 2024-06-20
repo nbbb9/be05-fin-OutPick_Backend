@@ -1,8 +1,7 @@
 package com.encore.outpick_backend.StockRequest.domain;
 
-import java.time.LocalDateTime;
-
 import lombok.Data;
+import java.time.LocalDateTime;
 
 @Data
 public class StockRequestDTO {

@@ -1,5 +1,6 @@
 package com.encore.outpick_backend.StockRequest.mapper;
 
+import com.encore.outpick_backend.StockRequest.domain.FeedbackDTO;
 import com.encore.outpick_backend.StockRequest.domain.StockRequestDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,6 +18,8 @@ public interface StockRequestMapper {
     public void update_sr_emp(int employee_number, int id);
 
     public void refuse_sr(int employee_number, int id);
+
+    public void add_feedback(FeedbackDTO feedbackDTO);
 
     public List<StockRequestDTO> read_shop_sr_list(int id);
 

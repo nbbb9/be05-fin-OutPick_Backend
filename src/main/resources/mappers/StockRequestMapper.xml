@@ -135,12 +135,13 @@
     </update>
 
     <!-- 재고 요청서 피드백 업데이트 -->
-<!--    <update id="????"-->
-<!--            parameterType="????">-->
+    <insert id="add_feedback"
+            parameterType="com.encore.outpick_backend.StockRequest.domain.FeedbackDTO">
 
+        INSERT INTO feedback (feedback_content, stock_request_id)
+        VALUES (#{feedback_content}, #{stock_request_id})
 
-
-<!--    </update>-->
+    </insert>
 
     <!-- 매장별 재고요청서 리스트 조회 -->
     <select id="read_shop_sr_list"

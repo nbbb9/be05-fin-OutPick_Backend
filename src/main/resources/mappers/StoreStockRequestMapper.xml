@@ -49,7 +49,8 @@
             approval,
             sr.product_id,
             p.name AS product_name,
-            amount
+            amount,
+            sr.shop_id
         FROM
             stock_request sr
         JOIN
@@ -71,9 +72,7 @@
         SELECT
             e.name AS employee_name,
             f.feedback_content,
-            f.month,
-            f.first_classification,
-            f.second_classification
+            f.creation_date
         FROM
             feedback f
         JOIN

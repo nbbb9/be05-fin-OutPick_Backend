@@ -2,6 +2,7 @@ package com.encore.outpick_backend.StockRequest.controller;
 
 import com.encore.outpick_backend.Login.controller.LoginController;
 import com.encore.outpick_backend.Login.domain.LoginDTO;
+import com.encore.outpick_backend.StockRequest.domain.FeedbackDTO;
 import com.encore.outpick_backend.StockRequest.domain.StockRequestDTO;
 import com.encore.outpick_backend.StockRequest.service.StockRequestService;
 import com.encore.outpick_backend.sse.SseController;
@@ -80,6 +81,16 @@ public class StockRequestController {
 
         LoginDTO user = loginController.getTokenInfo(token);
         int shop_id = stockRequestDTO.getShop_id();
+
+        FeedbackDTO feedbackDTO = new FeedbackDTO();
+
+        String feedback_content = stockRequestDTO.getFeedback_content();
+        int stock_request_id = stockRequestDTO.getStock_request_id();
+
+        feedbackDTO.setStock_request_id(stockRequestDTO.getStock_request_id());
+        feedbackDTO.setFeedback_content(stockRequestDTO.getFeedback_content());
+
+        stockRequestService.add_feedback(feedbackDTO);
 
         stockRequestService.refuse_sr(user.getEmployee_number(), id);
         return new ResponseEntity<>(HttpStatus.OK);

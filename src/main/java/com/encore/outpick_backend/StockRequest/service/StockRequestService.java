@@ -1,6 +1,7 @@
 package com.encore.outpick_backend.StockRequest.service;
 
 
+import com.encore.outpick_backend.StockRequest.domain.FeedbackDTO;
 import com.encore.outpick_backend.StockRequest.domain.StockRequestDTO;
 import com.encore.outpick_backend.StockRequest.mapper.StockRequestMapper;
 import lombok.RequiredArgsConstructor;
@@ -51,6 +52,11 @@ public class StockRequestService {
     //재고요청서 반려
     public void refuse_sr(int employee_number, int id){
         stockRequestMapper.refuse_sr(employee_number, id);
+    }
+
+    //피드백 내용 저장
+    public void add_feedback(FeedbackDTO feedbackDTO){
+        stockRequestMapper.add_feedback(feedbackDTO);
     }
 
     // 하나의 매장에 대한 재고요청서들의 리스트를 조회할 수 있다.
