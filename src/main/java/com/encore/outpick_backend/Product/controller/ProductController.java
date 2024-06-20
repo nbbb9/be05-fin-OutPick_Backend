@@ -48,7 +48,7 @@ public class ProductController {
     public void update_product_discount(@RequestBody ProductDTO product, Integer discount) {
         log.info("update_product_discount Controller");
         sseController.product_discount(product.getShop_id(), product.getProduct_id());
-        productService.update_product_discount(product.getProduct_id(), discount);
+        productService.update_product_discount(product.getShop_id(),product.getProduct_id(), discount);
     }//update_product_discount end
 
 }
