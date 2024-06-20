@@ -143,8 +143,8 @@
         resultType="com.encore.outpick_backend.Analyze.domain.AnalyzePriceResponseDTO">
 
         SELECT 
-            p.product_id AS product_id,
-            ss.quantity AS quantity,
+            p.name AS product_id,
+            sum(ss.quantity) AS quantity,
             p.consumer_price AS price,
             ss.shop_id
         FROM 
@@ -154,7 +154,7 @@
         WHERE		
             YEAR(ss.date) = #{year} AND ss.shop_id = #{shop_id}
         GROUP BY	
-            ss.shop_id, p.product_id;
+            ss.shop_id, p.name;
 
     </select>
 
