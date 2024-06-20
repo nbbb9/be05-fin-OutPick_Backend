@@ -8,6 +8,9 @@ import com.encore.outpick_backend.Analyze.domain.AnalyzeFCResultDTO;
 import com.encore.outpick_backend.Analyze.domain.AnalyzePriceRequestDTO;
 import com.encore.outpick_backend.Analyze.domain.AnalyzePriceResponseDTO;
 import com.encore.outpick_backend.Analyze.domain.AnalyzePriceResultDTO;
+import com.encore.outpick_backend.Analyze.domain.AnalyzeProductRequestDTO;
+import com.encore.outpick_backend.Analyze.domain.AnalyzeProductResponseDTO;
+import com.encore.outpick_backend.Analyze.domain.AnalyzeProductResultDTO;
 import com.encore.outpick_backend.Analyze.domain.AnalyzeSCResultDTO;
 import com.encore.outpick_backend.Analyze.domain.AnalyzeSCRequestDTO;
 import com.encore.outpick_backend.Analyze.domain.AnalyzeSCResponseDTO;
@@ -113,4 +116,19 @@ public class AnalyzeService {
         return result;
 
     }
+
+    // 매장별 상품들을 잘 팔린 순서대로 정렬
+    public AnalyzeProductResultDTO read_product_list(AnalyzeProductRequestDTO analyzeProductRequestDTO) {
+        
+        List<AnalyzeProductResponseDTO> lists = analyzeMapper.read_product_list(analyzeProductRequestDTO);
+
+        AnalyzeProductResultDTO result = new AnalyzeProductResultDTO();
+
+        for (AnalyzeProductResponseDTO list : lists) {
+            result.getProduct_name().add(list.getProduct_name());
+            result.getQuantity().add(list.getQuantity());
+        }
+
+        return result;
+    } 
 }

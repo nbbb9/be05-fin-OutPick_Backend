@@ -158,5 +158,25 @@
 
     </select>
 
+    <!-- 매장별 상품들을 잘 팔리는 순서대로 나열 -->
+    <select id="read_product_list"
+        parameterType="com.encore.outpick_backend.Analyze.domain.AnalyzeProductRequestDTO"
+        resultType="com.encore.outpick_backend.Analyze.domain.AnalyzeProductResponseDTO">
+
+        SELECT
+            p.name AS product_name,
+            SUM(ss.quantity) AS quantity
+        FROM
+            product p
+        JOIN
+            shop_sales ss ON (p.product_id = ss.product_id)
+        WHERE
+            YEAR(ss.date) = ${year} AND ss.shop_id = ${shop_id}
+        GROUP BY
+            p.name
+        ORDER BY
+            quantity DESC;
+
+    </select>
 
 </mapper>

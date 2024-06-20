@@ -79,6 +79,14 @@ public class AnalyzeController {
         
         return new ResponseEntity<AnalyzeSRResultDTO>(analyzeShopSalesService.read_sr_list(analyzeSRRequestDTO), HttpStatus.OK);
     }
+
+    // 특정 매장의 상품들을 잘 팔린 순서대로 나열
+    @PostMapping("/product_sales_analyze")
+    public ResponseEntity<AnalyzeProductResultDTO> read_product_list(@RequestBody AnalyzeProductRequestDTO analyzeProductRequestDTO) {
+        
+        return new ResponseEntity<AnalyzeProductResultDTO>(analyzeService.read_product_list(analyzeProductRequestDTO), HttpStatus.OK);
+    }
+    
     
 
 }
