@@ -49,6 +49,6 @@
         SET
             s.discount = #{discount}
         WHERE
-            p.product_id = #{product_id}
+            p.product_id = #{product_id} AND s.shop_id = #{shop_id}
     </select>
 </mapper>

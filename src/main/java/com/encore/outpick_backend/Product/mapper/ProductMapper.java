@@ -12,5 +12,5 @@ public interface ProductMapper {
     // 상품 단일 조회
     public List<ProductDTO> read_product(Integer product_id);
     // 상품 할인율 수정
-    public void update_product_discount(@Param("product_id") Integer product_id, @Param("discount") Integer discount);
+    public void update_product_discount(@Param("shop_id") Integer shop_id, @Param("product_id") Integer product_id, @Param("discount") Integer discount);
 }
