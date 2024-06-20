@@ -73,14 +73,13 @@ public class StockRequestController {
         }
     }
 
-    // 재고요청서를 반려한다.
-    @Operation(summary = "재고요청서 반려", description = "사원 : 담당 매장의 재고요청서에 대해서만 반려 가능.")
+    // 재고요청서를 반려한다. 피드백 같이 전송
+    @Operation(summary = "재고요청서 반려 & 피드백", description = "사원 : 담당 매장의 재고요청서에 대해서만 반려와 피드백 작성가능.")
     @PutMapping("/refuse/{formId}")
     public ResponseEntity<Void> refuse_sr(@RequestHeader("login_token") String token, @PathVariable("formId") int id, @RequestBody StockRequestDTO stockRequestDTO){
 
         LoginDTO user = loginController.getTokenInfo(token);
         int shop_id = stockRequestDTO.getShop_id();
-        log.info("반려.................................:" + shop_id);
 
         stockRequestService.refuse_sr(user.getEmployee_number(), id);
         return new ResponseEntity<>(HttpStatus.OK);
