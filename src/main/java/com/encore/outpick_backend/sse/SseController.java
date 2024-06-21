@@ -56,4 +56,9 @@ public class SseController {
         return ResponseEntity.ok().build();
     }//stock_request_approval end
 
+    public ResponseEntity<String> stock_request_feedback(int shop_id, int stock_request_id){
+        log.info("stock_request_feedback Start");
+        sseEmitters.stock_request_feedback(shop_id, stock_request_id);
+        return ResponseEntity.ok().build();
+    }//stock_request_approval end
 }

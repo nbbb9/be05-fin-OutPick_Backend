@@ -93,6 +93,9 @@ public class StockRequestController {
         stockRequestService.add_feedback(feedbackDTO);
 
         stockRequestService.refuse_sr(user.getEmployee_number(), id);
+
+        // 재고요청서 피드백 SSE
+        sseController.stock_request_feedback(shop_id, stock_request_id);
         return new ResponseEntity<>(HttpStatus.OK);
 
     }//refuse_sr

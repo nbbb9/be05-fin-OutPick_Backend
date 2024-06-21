@@ -106,4 +106,23 @@ public class SseEmitters {
         log.info("재고요청서 승인 emitter 이벤트 보내기 끝");
     }//stock_request_approval end
 
+    //재고요청서 피드백 알림
+    public void stock_request_feedback(int shop_id, int stock_request_id){
+        StockRequestFeedbackSSEDTO dto = new StockRequestFeedbackSSEDTO();
+        dto.setShop_id(shop_id);
+        dto.setStock_request_id(stock_request_id);
+
+        SseEmitter sse = emitters.get(shop_id);
+        try {
+            sse.send(SseEmitter.event()
+                    .name("stock_request_feedback")
+                    .data(dto));
+            log.info("재고요청서 피드백 emitter 이벤트 보내는 중");
+        }catch (IOException e){
+            log.error("error");
+        }
+
+        log.info("재고요청서 피드백 emitter 이벤트 보내기 끝");
+    }//stock_request_approval end
+
 }
