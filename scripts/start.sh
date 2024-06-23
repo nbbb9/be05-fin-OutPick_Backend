@@ -30,10 +30,13 @@ if [ -n "$PID" ]; then
 fi
 
 chmod +x /home/ec2-user/build/libs/outpick_backend-0.0.1-SNAPSHOT.jar
-nohup java -jar $JAR_FILE & sleep 2
+nohup java -jar $JAR_FILE > /dev/null 2>&1 &
 
 # 실행된 애플리케이션의 PID 확인
 CURRENT_PID=$(pgrep -f $JAR_FILE)
 echo "$TIME_NOW > 실행된 프로세스 아이디 $CURRENT_PID 입니다."
+
+exec 1>&-
+exec 2>&-
 
 exit 0
