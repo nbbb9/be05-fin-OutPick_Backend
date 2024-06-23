@@ -25,3 +25,4 @@ nohup java -jar $JAR_FILE & sleep 2
 CURRENT_PID=$(pgrep -f $JAR_FILE)
 echo "$TIME_NOW > 실행된 프로세스 아이디 $CURRENT_PID 입니다."
 
+exit 0
