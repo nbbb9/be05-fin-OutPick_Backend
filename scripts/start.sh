@@ -18,6 +18,7 @@ cp $PROJECT_ROOT/outpick_backend-0.0.1-SNAPSHOT.jar $JAR_FILE
 # JAR 파일 실행
 echo "$TIME_NOW > $JAR_FILE 파일 실행" 
 source ~/.bashrc
+chmod +x /home/ec2-user/build/libs/outpick_backend-0.0.1-SNAPSHOT.jar
 nohup java -jar $JAR_FILE & sleep 2
 
 # 실행된 애플리케이션의 PID 확인
