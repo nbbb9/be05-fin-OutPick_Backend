@@ -18,6 +18,17 @@ cp $PROJECT_ROOT/outpick_backend-0.0.1-SNAPSHOT.jar $JAR_FILE
 # JAR 파일 실행
 echo "$TIME_NOW > $JAR_FILE 파일 실행" 
 source ~/.bashrc
+
+PID=$(lsof -t -i:8080)
+
+# 기존 서버 종료
+if [ -n "$PID" ]; then
+    echo "Stopping server on port $PORT with PID $PID"
+    kill $PID
+    # 종료 확인을 위해 몇 초 대기
+    sleep 2
+fi
+
 chmod +x /home/ec2-user/build/libs/outpick_backend-0.0.1-SNAPSHOT.jar
 nohup java -jar $JAR_FILE & sleep 2
 
