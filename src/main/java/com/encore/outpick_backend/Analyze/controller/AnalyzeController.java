@@ -79,7 +79,6 @@ public class AnalyzeController {
     @Operation(summary = "특정 상품의 연간 판매량", description = "재고 요청서에서 매장의 특정 상품의 연간 판매량을 막대 그래프로 볼 수 있다." )
     @PostMapping("/stock_request_analyze")
     public ResponseEntity<AnalyzeSRResultDTO> read_sr_list(@RequestBody AnalyzeSRRequestDTO analyzeSRRequestDTO ) {
-        //TODO: process POST request
         
         return new ResponseEntity<AnalyzeSRResultDTO>(analyzeShopSalesService.read_sr_list(analyzeSRRequestDTO), HttpStatus.OK);
     }
