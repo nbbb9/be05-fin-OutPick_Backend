@@ -105,6 +105,7 @@ public class LoginController {
         result.setRole(role);
         result.setName(name);
         result.setId(id);
+        result.setExpiration(claims.getExpiration());
         return result;
     }   // getToken end
     

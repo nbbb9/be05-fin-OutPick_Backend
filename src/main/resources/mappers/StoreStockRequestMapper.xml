@@ -8,7 +8,7 @@
 
         INSERT INTO stock_request(shop_id, product_id, amount, request_date, approval, admin_approval)
         VALUES
-            (#{shop_id}, #{product_id}, #{amount}, SYSDATE(), "대기", "대기")
+            (#{shop_id}, #{product_id}, #{amount}, SYSDATE(), "대기", "미승인")
 
     </insert>
 

@@ -1,5 +1,7 @@
 package com.encore.outpick_backend.Login.domain;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -11,4 +13,5 @@ public class LoginDTO {
     private String authorization;
     private String name;
     private int id;
+    private Date expiration;
 }
