@@ -61,6 +61,8 @@ public class SseEmitters {
                     .name("proposal_solution")
                     .data(dto));
             log.info("emitter 이벤트 보내는 중");
+        }catch (NullPointerException e) {
+            log.error("sse 객체가 없습니다.");
         }catch (IOException e){
             log.error("error");
         }
@@ -80,6 +82,8 @@ public class SseEmitters {
                     .name("product_discount")
                     .data(dto));
             log.info("할인율 emitter 이벤트 보내는 중");
+        }catch (NullPointerException e) {
+            log.error("sse 객체가 없습니다.");
         }catch (IOException e){
             log.error("error");
         }
@@ -99,6 +103,8 @@ public class SseEmitters {
                     .name("stock_request_approval")
                     .data(dto));
             log.info("재고요청서 승인 emitter 이벤트 보내는 중");
+        }catch (NullPointerException e) {
+            log.error("sse 객체가 없습니다.");
         }catch (IOException e){
             log.error("error");
         }
@@ -118,6 +124,8 @@ public class SseEmitters {
                     .name("stock_request_feedback")
                     .data(dto));
             log.info("재고요청서 피드백 emitter 이벤트 보내는 중");
+        }catch (NullPointerException e) {
+            log.error("sse 객체가 없습니다.");
         }catch (IOException e){
             log.error("error");
         }
