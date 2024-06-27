@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 
 public enum AdminApproval {
-    대기("대기"),
+    미승인("미승인"),
     승인("승인");
 
     private final String status;
