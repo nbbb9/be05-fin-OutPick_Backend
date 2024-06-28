@@ -108,5 +108,5 @@ public class LoginController {
         result.setExpiration(claims.getExpiration());
         return result;
     }   // getToken end
-    
+
 }
